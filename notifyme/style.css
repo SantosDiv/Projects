@@ -1,0 +1,21 @@
+:root {
+  font-size: 20px;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 110%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.time {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 400%;
+}
