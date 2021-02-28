@@ -1,6 +1,16 @@
+import { Notify } from './Notify.js';
+
 const App = {
-  start() {
-    console.log('Started');
+  async start() {
+    try {
+      await Notify.init();
+      Notify.notify({
+        title: 'Lembrete trybe',
+        body: 'Form please'
+       })
+    } catch (error) {
+      console.log(error.message);
+    }
   },
 }
 
