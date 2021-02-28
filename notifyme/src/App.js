@@ -1,14 +1,11 @@
 import { Notify } from './Notify.js';
+import { Time } from './Time.js';
 
 const App = {
   async start(definedTime) {
     try {
       await Notify.init();
-      Notify.notify({
-        title: 'Lembrete trybe',
-        body: 'Form please',
-        definedTime,
-      });
+      Time.init(definedTime);
     } catch (error) {
       console.log(error.message);
     }
