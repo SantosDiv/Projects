@@ -17,7 +17,12 @@ const Time = {
     });
   },
   getTimeDefined(){
-    if(localStorage.getItem('time')) return localStorage.getItem('time');
+    if(localStorage.getItem('time')) {
+      const timeDefined = localStorage.getItem('time');
+      const spanTimeDefined = document.querySelector('#time-defined');
+      spanTimeDefined.textContent = timeDefined;
+      return timeDefined;
+    }
     else localStorage.setItem('time', '0');
   }
 }
