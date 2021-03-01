@@ -12,9 +12,15 @@
 <body>
   <p class="title"> Proxima notificação definida para as 16:21</p>
   <span class="time"></span>
+  <form action="">
+    <select name="hoursSelect" id="hoursSelect" class="hours"></select>
+    <select name="minutes" id="minutesSelect" class="minutes"></select>
+    <button type="submit" id="sendButton">Definir Lembrete</button>
+  </form>
+
   <script type="module">
     import { App } from './src/App.js';
-    App.start('19:08:00');
+    App.start();
   </script>
 </body>
 </html>

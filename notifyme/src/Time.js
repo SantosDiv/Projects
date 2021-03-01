@@ -1,21 +1,25 @@
-import { Notify } from './Notify.js';
-
 const Time = {
-  init(definedTime) {
-    setInterval(() => { this.timeDisplay(definedTime) }, 1000);
+  SetTimeDefined() {
+    const sendButton = document.querySelector('#sendButton');
+    const hoursSelect = document.querySelector('#hoursSelect');
+    const minutesSelect = document.querySelector('#minutesSelect');
+    sendButton.addEventListener('click', () => {
+      let valueHour = hoursSelect.value;
+      let valueMinutes = minutesSelect.value;
+      if (Number(hoursSelect.value) < 10) {
+       valueHour = `0${hoursSelect.value}`;
+      }
+      if (Number(minutesSelect.value) < 10) {
+        valueMinutes = `0${minutesSelect.value}`;
+      }
+      const time = `${valueHour}:${valueMinutes}:00`;
+      localStorage.setItem('time',time);
+    });
   },
-  async timeDisplay(definedTime) {
-    const date = new Date();
-    const time = date.toLocaleTimeString();
-    const spanDisplay = document.querySelector('.time');
-    spanDisplay.textContent = time;
-    if (time === definedTime) {
-      Notify.notify({
-        title: 'Lembrete trybe',
-        body: 'Form please',
-      });
-    }
-  },
+  getTimeDefined(){
+    if(localStorage.getItem('time')) return localStorage.getItem('time');
+    else localStorage.setItem('time', '0');
+  }
 }
 
 export { Time };
