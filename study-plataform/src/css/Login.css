@@ -37,7 +37,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  max-width: 90%;
+  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -88,4 +88,14 @@
 
 .button:focus {
   outline: none;
+}
+
+.error-class {
+  color: var(--error-color);
+  box-shadow: 0 0 0 1px var(--error-color);
+  transition: 0.5 ease-in;
+}
+
+.error-class > .input::placeholder {
+  color: var(--error-color);
 }

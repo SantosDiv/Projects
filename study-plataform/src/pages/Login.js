@@ -4,6 +4,30 @@ import girl from '../img/girl-study.svg';
 import "../css/Login.css";
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handlerChange = this.handlerChange.bind(this);
+    this.handlerClick = this.handlerClick.bind(this);
+
+  }
+
+  handlerChange({ target }) {
+    const { value, parentNode } = target;
+    value === ''
+      ? parentNode.classList.add('error-class')
+      : parentNode.classList.remove('error-class');
+  }
+
+  handlerClick() {
+    const fieldUser = document.querySelector('#username');
+    const fieldPass = document.querySelector('#password');
+    const userIsEmpyt = fieldUser.value === '';
+    const passIsEmpyt = fieldPass.value === '';
+
+    if (userIsEmpyt) fieldUser.parentNode.classList.add('error-class');
+    if (passIsEmpyt) fieldPass.parentNode.classList.add('error-class');
+  }
+
   render() {
     return(
         <main>
@@ -26,6 +50,7 @@ class Login extends React.Component {
                   className="input"
                   id="username"
                   placeholder="Username"
+                  onChange={ this.handlerChange }
                 />
               </label>
               <label className="container-input">
@@ -36,10 +61,18 @@ class Login extends React.Component {
                   className="input"
                   id="password"
                   placeholder="Password"
+                  onChange={ this.handlerChange }
                 />
               </label>
               <Link to="/forgetpass" className="small-text"> Forget password? </Link>
-              <button type="submit" id="button-submit" className="button"> Sign In </button>
+              <button
+                type="button"
+                id="button-submit"
+                className="button"
+                onClick= { this.handlerClick }
+              >
+                  Sign In
+              </button>
             </form>
           </section>
         </main>
