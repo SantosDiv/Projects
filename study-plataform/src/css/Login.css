@@ -1,0 +1,91 @@
+:root {
+  --primary-color: rgb( 52, 49, 94 );
+  --secondary-color: rgb( 249, 168, 38 );
+  --terciary-color: rgb( 157, 156, 181 );
+  --bars-block-color: rgb( 255, 231, 155 );
+  --error-color: rgb( 245, 124, 124 );
+  --gray-color: rgb( 23, 23, 23 );
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: node;
+  list-style: none;
+}
+
+.container-image {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.image {
+  height: 35vh;
+}
+
+.title {
+  color: var(--terciary-color);
+  font-size: 1.8rem;
+  margin-bottom: 0.9rem;
+  text-align: center;
+}
+
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.container-input {
+  align-items: center;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.2rem;
+  padding-left: 0.9rem;
+  width: 100%;
+}
+
+.input {
+  border: none;
+  font-size: 20px;
+  box-sizing: border-box;
+  padding: 0.8rem;
+  outline: none;
+  width: 100%;
+  color: var(--primary-color);
+}
+
+.input::placeholder {
+  color: var(--terciary-color);
+}
+
+.small-text {
+  font-size: 0.9rem;
+  align-self: flex-start;
+  margin-top: -0.5rem;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.button {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.8rem;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  width: 80%;
+}
+
+.button:focus {
+  outline: none;
+}
