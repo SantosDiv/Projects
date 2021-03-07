@@ -14,7 +14,7 @@ const TimeDisplay = {
     if (time === definedTime) {
       Notify.notify({
         title: 'Lembrete trybe',
-        body: 'Form please',
+        body: 'Aula 16:30',
       });
     }
   },
