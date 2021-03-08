@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
 
@@ -19,6 +20,7 @@ class Login extends React.Component {
   }
 
   handlerClick() {
+    const { getDataFormLogin } = this.props;
     const fieldUser = document.querySelector('#username');
     const fieldPass = document.querySelector('#password');
     const userIsEmpyt = fieldUser.value === '';
@@ -26,6 +28,14 @@ class Login extends React.Component {
 
     if (userIsEmpyt) fieldUser.parentNode.classList.add('error-class');
     if (passIsEmpyt) fieldPass.parentNode.classList.add('error-class');
+
+    if (!userIsEmpyt && !passIsEmpyt) {
+      const login = {
+        username: fieldUser.value,
+        password: fieldPass.value,
+      }
+      getDataFormLogin(login);
+    }
   }
 
   render() {
@@ -65,14 +75,14 @@ class Login extends React.Component {
                 />
               </label>
               <Link to="/forgetpass" className="small-text"> Forget password? </Link>
-              <button
-                type="button"
+              <Link
+                to="/dashboard"
                 id="button-submit"
                 className="button"
                 onClick= { this.handlerClick }
               >
                   Sign In
-              </button>
+              </Link>
             </form>
           </section>
         </main>
