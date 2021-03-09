@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
@@ -9,6 +9,10 @@ class Login extends React.Component {
     super(props);
     this.handlerChange = this.handlerChange.bind(this);
     this.handlerClick = this.handlerClick.bind(this);
+
+    this.state = {
+      shouldRedirect: false,
+    }
 
   }
 
@@ -34,11 +38,17 @@ class Login extends React.Component {
         username: fieldUser.value,
         password: fieldPass.value,
       }
+      this.setState({
+        shouldRedirect: true,
+      })
       getDataFormLogin(login);
     }
   }
 
   render() {
+    const { shouldRedirect } = this.state;
+    if (shouldRedirect) return <Redirect to="/dashboard" />;
+
     return(
         <main>
           <section className="container-image">
@@ -75,14 +85,14 @@ class Login extends React.Component {
                 />
               </label>
               <Link to="/forgetpass" className="small-text"> Forget password? </Link>
-              <Link
-                to="/dashboard"
+              <button
+                type="button"
                 id="button-submit"
                 className="button"
                 onClick= { this.handlerClick }
               >
                   Sign In
-              </Link>
+              </button>
             </form>
           </section>
         </main>
