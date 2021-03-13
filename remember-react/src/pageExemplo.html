@@ -1,0 +1,47 @@
+<!-- Header -->
+<header class="header" role="banner">
+  <div class="container">
+    <span class="control-menu visible-xs ico-menu-2"></span>
+    <span class="control-sidebar visible-xs ico-list"></span>
+    <h1 class="project-name"><a href="#">Nome do Sistema</a></h1>
+    <a href="#" class="help-suggestions ico-question hidden-xs">Ajuda e Sugestões</a>
+
+    <div class="dropdown hidden-xs">
+      <a href="#" data-toggle="dropdown" class="title-dropdown">emkt2013</a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <li><a href="#" role="menuitem">Option 1</a></li>
+        <li><a href="#" role="menuitem">Option 2</a></li>
+        <li><a href="#" role="menuitem">Option 3</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Login -->
+
+<div className="box-parent-login">
+  <div className="well bg-white box-login">
+    <h1 className="ls-login-logo">Login</h1>
+    <form>
+      <fieldset>
+        <div className="form-group ls-login-user">
+          <label for="userLogin">Usuário</label>
+          <input className="form-control ls-login-bg-user input-lg" id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" />
+        </div>
+
+        <div className="form-group ls-login-password">
+          <label for="userPassword">Senha</label>
+          <input className="form-control ls-login-bg-password input-lg" id="userPassword" type="password" aria-label="Senha" placeholder="Senha" />
+        </div>
+
+        {/* <a href="#" className="ls-login-forgot">Esqueci minha senha</a> */}
+
+        <input type="submit" value="Entrar" className="btn btn-primary btn-lg btn-block" />
+        <p className="txt-center ls-login-signup">Não possui um usuário na Locaweb?
+          {/* <a href="#">Cadastre-se agora</a> */}
+        </p>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
