@@ -1,0 +1,16 @@
+:root {
+  --primary-color: rgb( 52, 49, 94 );
+  --secondary-color: rgb( 249, 168, 38 );
+  --terciary-color: rgb( 157, 156, 181 );
+  --bars-block-color: rgb( 255, 231, 155 );
+  --error-color: rgb( 245, 124, 124 );
+  --gray-color: rgb( 23, 23, 23 );
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: node;
+  list-style: none;
+}
+
