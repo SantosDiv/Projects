@@ -6,31 +6,32 @@ import Login from './Login';
 class Routes extends React.Component {
   constructor(props) {
     super(props);
-    this.getDataFormLogin = this.getDataFormLogin.bind(this);
+    this.autentication = this.autentication.bind(this);
 
     this.state = {
       username: '',
-      password: '',
     }
   }
 
-  getDataFormLogin({ username, password }) {
+  autentication({ username }) {
     this.setState({
       username,
-      password,
-    })
+    });
+    return true;
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username } = this.state;
     return(
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={() =>
-            <Login getDataFormLogin={ this.getDataFormLogin } />
+            <Login autentication={ this.autentication } />
           } />
           <Route path="/dashboard" render={(props) =>
-            <Dashboard {...props} username= { username } password= { password } />
+            this.autentication()
+            ? (<Dashboard {...props} username= { username } />)
+            : (<Redirect to={{pathname: "/", state: { from: props.location }}} />)
           } />
         </Switch>
       </BrowserRouter>

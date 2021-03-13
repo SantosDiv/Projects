@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import Header from '../components/Header';
 
 class Dashboard extends React.Component {
@@ -13,11 +13,11 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { username, password } = this.state;
-    if(!(username === "diogenes" && password === "1234")) {
-      alert("Dados incorretos :(")
-      return <Redirect to="/" />
-    }
+    const { username } = this.props;
+    // if(!(username === "diogenes" && password === "1234")) {
+    //   alert("Dados incorretos :(")
+    //   return <Redirect to="/" />
+    // }
     return (
       <>
         <Header />

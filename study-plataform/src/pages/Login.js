@@ -10,9 +10,9 @@ class Login extends React.Component {
     this.handlerChange = this.handlerChange.bind(this);
     this.handlerClick = this.handlerClick.bind(this);
 
-    this.state = {
-      shouldRedirect: false,
-    }
+    // this.state = {
+    //   shouldRedirect: false,
+    // }
 
   }
 
@@ -24,7 +24,7 @@ class Login extends React.Component {
   }
 
   handlerClick() {
-    const { getDataFormLogin } = this.props;
+    const { autentication } = this.props;
     const fieldUser = document.querySelector('#username');
     const fieldPass = document.querySelector('#password');
     const userIsEmpyt = fieldUser.value === '';
@@ -36,19 +36,15 @@ class Login extends React.Component {
     if (!userIsEmpyt && !passIsEmpyt) {
       const login = {
         username: fieldUser.value,
-        password: fieldPass.value,
       }
-      this.setState({
-        shouldRedirect: true,
-      })
-      getDataFormLogin(login);
+      // this.setState({
+      //   shouldRedirect: true,
+      // })
+      autentication(login);
     }
   }
 
   render() {
-    const { shouldRedirect } = this.state;
-    if (shouldRedirect) return <Redirect to="/dashboard" />;
-
     return(
         <main>
           <section className="container-image">
