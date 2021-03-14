@@ -8,8 +8,19 @@ class Header extends React.Component {
       <header className="header-container">
         <nav className="menu-container">
           <a href="/dashboard" className="icon"><i className="fas fa-bars"></i></a>
-          <ul>
-            <Link to="/">Home</Link>
+          <ul className="links-container">
+            <Link to="/">
+              <li>Home</li>
+            </Link>
+            <Link to="/">
+              <li>Perfil</li>
+            </Link>
+            <Link to="/">
+              <li>Conquistas</li>
+            </Link>
+            <Link to="/">
+              <li>Certificados</li>
+            </Link>
           </ul>
           <div className="box-links">
             <p>100 Xp</p>
