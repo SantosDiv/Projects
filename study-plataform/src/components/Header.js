@@ -23,6 +23,7 @@ class Header extends React.Component {
 
   render() {
     const { propVisibility } = this.state;
+    const { username } = this.props;
     return (
       <header className="header-container">
         <nav className="menu-container">
@@ -38,19 +39,19 @@ class Header extends React.Component {
               </button>
             </div>
             <ul className="links-container">
-              <Link to="/" className="link">
+              <Link to={ `/dashboard/${username}` } className="link">
                 <li>Home</li>
                 <i className="fas fa-home"></i>
               </Link>
-              <Link to="/" className="link">
+              <Link to="/profile" className="link">
                 <li>Perfil</li>
                 <i className="fas fa-user"></i>
               </Link>
-              <Link to="/" className="link">
+              <Link to="/achievements" className="link">
                 <li>Conquistas</li>
                 <i className="fas fa-trophy"></i>
               </Link>
-              <Link to="/" className="link">
+              <Link to="/certificates" className="link">
                 <li>Certificados</li>
                 <i className="fas fa-certificate"></i>
               </Link>

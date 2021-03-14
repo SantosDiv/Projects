@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
     const { username } = this.state;
     return (
       <>
-        <Header />
+        <Header username={ username } />
         <p>Olá, { username } </p>
       </>
     )
