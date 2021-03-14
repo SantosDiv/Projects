@@ -31,8 +31,27 @@
   position: absolute;
   left: 0;
   top: 0;
-  visibility: hidden;
   width: 10rem;
+}
+
+@keyframes slideIn {
+  from {
+    left: -300px;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -300px;
+  }
 }
 
 .close-icon {

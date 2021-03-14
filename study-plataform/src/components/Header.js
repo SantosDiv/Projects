@@ -7,30 +7,33 @@ class Header extends React.Component {
     super(props);
 
     this.menuControl = this.menuControl.bind(this);
-
     this.state = {
       propVisibility: {visibility: 'hidden'},
     }
   }
 
-  menuControl(property) {
+  menuControl({ visibility, animation }) {
     this.setState({
-      propVisibility: {visibility: property},
+      propVisibility: {
+        visibility,
+        animation
+      },
     });
   }
-
 
   render() {
     const { propVisibility } = this.state;
     return (
       <header className="header-container">
         <nav className="menu-container">
-          <button className="button-menu" onClick={() => this.menuControl('visible')}>
+          <button className="button-menu" onClick={() =>
+            this.menuControl({visibility: 'visible', animation: 'slideIn 2s'})}>
            <i className="fas fa-bars"></i>
           </button>
           <nav className="menu-links" style={propVisibility}>
             <div className="close-icon">
-              <button type="button" onClick={() => this.menuControl('hidden')}>
+              <button type="button" onClick={() =>
+                this.menuControl({visibility: 'hidden'})}>
                 <i className="fas fa-times"></i>
               </button>
             </div>
