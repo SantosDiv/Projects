@@ -1,0 +1,49 @@
+.bar-progress-modules {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2rem 2rem;
+  margin: 1.5rem auto;
+  width: 90%;
+  z-index: 0;
+}
+
+.modules-titles {
+  align-items: center;
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  justify-content: space-around;
+}
+
+.modules-titles p {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  font-size: 0.6rem;
+  right: -0.7rem;
+  opacity: 0.5;
+}
+
+.disable-module {
+  opacity: 0.5;
+}
+
+.bar-disable {
+  align-items: center;
+  background-color: var(--bars-block-color);
+  border-radius: 0.8rem;
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  height: 0.5rem;
+  width: 100%;
+}
+
+.bar-enable {
+  background-color: var(--secondary-color);
+  border-radius: 0.8rem;
+  height: 0.5rem;
+  width: 33%;
+}

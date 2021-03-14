@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import BarProgressModules from '../components/BarProgressModules';
 import '../css/Dashboard.css';
 
 class Dashboard extends React.Component {
@@ -22,6 +23,7 @@ class Dashboard extends React.Component {
           <p className="color-terciary text-medium light-weight">Bem vindo</p>
           <p className="color-primary text-big bold">{ refactoredName }</p>
         </div>
+        <BarProgressModules />
       </>
     )
   }
