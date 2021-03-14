@@ -1,0 +1,8 @@
+.saudation {
+  text-align: center;
+  padding: 10px;
+}
+
+.saudation > p {
+  line-height: 1.5rem;
+}

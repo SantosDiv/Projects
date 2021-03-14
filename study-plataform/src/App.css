@@ -13,5 +13,37 @@
   padding: 0;
   text-decoration: node;
   list-style: none;
+  font-family: 'Poppins', sans-serif;
 }
 
+.text-small {
+  font-size: 1.1rem;
+}
+
+.text-medium {
+  font-size: 1.2rem;
+}
+
+.text-big {
+  font-size: 1.7rem;
+}
+
+.color-primary {
+  color: var(--primary-color);
+}
+
+.color-secondary {
+  color: var(--secondary-color);
+}
+
+.color-terciary {
+  color: var(--terciary-color);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.light-weight {
+  font-weight: 300;
+}

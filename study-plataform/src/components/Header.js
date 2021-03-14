@@ -26,8 +26,8 @@ class Header extends React.Component {
     const { username } = this.props;
     return (
       <header className="header-container">
-        <nav className="menu-container">
-          <button className="button-menu" onClick={() =>
+        <div className="menu-container">
+          <button className="button-menu color-primary" onClick={() =>
             this.menuControl({visibility: 'visible', animation: 'slideIn 2s'})}>
            <i className="fas fa-bars"></i>
           </button>
@@ -57,11 +57,11 @@ class Header extends React.Component {
               </Link>
             </ul>
           </nav>
-          <div className="box-right">
-            <p>100 Xp</p>
-            <a href="/" className="icon"><i className="fas fa-sign-out-alt"></i></a>
-          </div>
-        </nav>
+        </div>
+        <div className="box-xp-signout">
+          <p className="text-small color-primary">100 Xp</p>
+          <Link to="/" className="color-primary"><i className="fas fa-sign-out-alt"></i></Link>
+        </div>
       </header>
     )
   }

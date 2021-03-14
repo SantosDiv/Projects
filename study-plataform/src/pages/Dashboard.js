@@ -1,6 +1,6 @@
 import React from 'react';
-// import { Redirect } from 'react-router';
 import Header from '../components/Header';
+import '../css/Dashboard.css';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -14,10 +14,14 @@ class Dashboard extends React.Component {
 
   render() {
     const { username } = this.state;
+    const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
     return (
       <>
         <Header username={ username } />
-        <p>Olá, { username } </p>
+        <div className="saudation">
+          <p className="color-terciary text-medium light-weight">Bem vindo</p>
+          <p className="color-primary text-big bold">{ refactoredName }</p>
+        </div>
       </>
     )
   }
