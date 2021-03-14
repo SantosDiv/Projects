@@ -12,11 +12,12 @@ class Header extends React.Component {
     }
   }
 
-  menuControl({ visibility, animation }) {
+  menuControl({ visibility, animation, left }) {
     this.setState({
       propVisibility: {
         visibility,
-        animation
+        animation,
+        left,
       },
     });
   }
@@ -34,7 +35,7 @@ class Header extends React.Component {
           <nav className="menu-links" style={propVisibility}>
             <div className="close-icon">
               <button type="button" onClick={() =>
-                this.menuControl({visibility: 'hidden'})}>
+                this.menuControl({animation: 'slideOut 2s', left: '-300px'})}>
                 <i className="fas fa-times"></i>
               </button>
             </div>
