@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="style.css">
+  <title>Notify me</title>
+</head>
+<body>
+  <p class="title"> Proxima notificação definida para as <span id="time-defined"></span></p>
+  <span class="time"></span>
+  <form action="">
+    <select name="hoursSelect" id="hoursSelect" class="hours"></select>
+    <select name="minutes" id="minutesSelect" class="minutes"></select>
+    <button type="submit" id="sendButton">Definir Lembrete</button>
+  </form>
+  <div class="buttons-move-container">
+    <button id="up-hours" value="up">Up</button>
+    <button id="up-minutes" value="up">Up</button>
+  </div>
+  <div class="clock">
+    <div class="container-list">
+      <ul class="list-numbers list-hours">
+        <li class="number">01</li>
+        <li class="number">02</li>
+        <li class="number">03</li>
+        <li class="number">04</li>
+        <li class="number selected">05</li>
+        <li class="number">06</li>
+        <li class="number">07</li>
+        <li class="number">08</li>
+        <li class="number">09</li>
+        <li class="number">10</li>
+      </ul>
+    </div>
+
+    <div class="container-list">
+      <ul class="list-numbers list-minutes">
+        <li class="number">01</li>
+        <li class="number">02</li>
+        <li class="number">03</li>
+        <li class="number">04</li>
+        <li class="number selected">05</li>
+        <li class="number">06</li>
+        <li class="number">07</li>
+        <li class="number">08</li>
+        <li class="number">09</li>
+        <li class="number">10</li>
+      </ul>
+    </div>
+  </div>
+  <div class="buttons-move-container">
+    <button id="down-hours" value="down">Down</button>
+    <button id="down-minutes" value="down">Down</button>
+  </div>
+
+  <script type="module">
+    import { App } from './src/App.js';
+    App.start();
+  </script>
+</body>
+</html>
