@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import * as api from '../services/userValidation';
 
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
@@ -10,9 +11,10 @@ class Login extends React.Component {
     this.handlerChange = this.handlerChange.bind(this);
     this.handlerClick = this.handlerClick.bind(this);
 
-    // this.state = {
-    //   shouldRedirect: false,
-    // }
+    this.state = {
+      shouldRedirect: false,
+      username: '',
+    }
 
   }
 
@@ -24,7 +26,6 @@ class Login extends React.Component {
   }
 
   handlerClick() {
-    const { autentication } = this.props;
     const fieldUser = document.querySelector('#username');
     const fieldPass = document.querySelector('#password');
     const userIsEmpyt = fieldUser.value === '';
@@ -34,17 +35,28 @@ class Login extends React.Component {
     if (passIsEmpyt) fieldPass.parentNode.classList.add('error-class');
 
     if (!userIsEmpyt && !passIsEmpyt) {
-      const login = {
-        username: fieldUser.value,
-      }
-      // this.setState({
-      //   shouldRedirect: true,
-      // })
-      autentication(login);
+      this.setState(
+        {
+          shouldRedirect: false,
+        },
+        async () => {
+          try {
+            const usernameTrue = await api.validation(fieldUser.value, fieldPass.value);
+            this.setState({
+              shouldRedirect: true,
+              username: usernameTrue,
+            });
+          } catch (error) {
+            alert(error);
+          }
+        }
+        );
     }
   }
 
   render() {
+    const { shouldRedirect, username } = this.state;
+    if (shouldRedirect) return <Redirect to={`/dashboard/${username}`} />
     return(
         <main>
           <section className="container-image">
