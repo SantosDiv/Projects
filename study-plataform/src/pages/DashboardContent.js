@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import BarProgressModules from '../components/BarProgressModules';
 import CourseItem from '../components/CourseItem';
 import Materials from '../components/Materials';
@@ -18,7 +17,6 @@ class DashboardContent extends React.Component {
           { courses.map((course) => <CourseItem key={ course.id } course={ course } />) }
         </section>
         <Materials />
-        <Link to="/profile">Perfil</Link>
       </>
     );
   }

@@ -39,12 +39,12 @@ class Dashboard extends React.Component {
     return (
       <>
         <Header username={ username } />
-          <Switch>
-            <Route path="/dashboard" render={() =>
-              <DashboardContent courses={ courses } username={ refactoredName }/>
-            }/>
-            <Route path="/profile" render={() => <Profile /> }/>
-          </Switch>
+        <Switch>
+          <Route exact path="/dashboard/profile" render={() => <Profile /> }/>
+          <Route path="/dashboard" render={() =>
+            <DashboardContent courses={ courses } username={ refactoredName }/>
+          }/>
+        </Switch>
         <Footer />
       </>
     )

@@ -44,7 +44,7 @@ class Header extends React.Component {
                 <li>Home</li>
                 <i className="fas fa-home"></i>
               </Link>
-              <Link to="/profile" className="link">
+              <Link to="/dashboard/profile" className="link">
                 <li>Perfil</li>
                 <i className="fas fa-user"></i>
               </Link>
