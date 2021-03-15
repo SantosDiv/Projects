@@ -1,9 +1,9 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Header from '../components/Header';
-import BarProgressModules from '../components/BarProgressModules';
-import CourseItem from '../components/CourseItem';
-import Materials from '../components/Materials';
 import Footer from '../components/Footer';
+import DashboardContent from './DashboardContent';
+import Profile from './Profile';
 import * as api from '../services/dataCourses';
 import '../css/Dashboard.css';
 
@@ -39,15 +39,12 @@ class Dashboard extends React.Component {
     return (
       <>
         <Header username={ username } />
-        <div className="saudation">
-          <p className="color-terciary text-medium light-weight">Bem vindo</p>
-          <p className="color-primary text-big bold">{ refactoredName }</p>
-        </div>
-        <BarProgressModules />
-        <section className="courses-container">
-          { courses.map((course) => <CourseItem key={ course.id } course={ course } />) }
-        </section>
-        <Materials />
+          <Switch>
+            <Route path="/dashboard" render={() =>
+              <DashboardContent courses={ courses } username={ refactoredName }/>
+            }/>
+            <Route path="/profile" render={() => <Profile /> }/>
+          </Switch>
         <Footer />
       </>
     )

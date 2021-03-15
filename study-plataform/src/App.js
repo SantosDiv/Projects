@@ -1,10 +1,10 @@
 import React from 'react';
-import Routes from './pages/routes';
+import PublicRoutes from './pages/PublicRoutes';
 import './App.css';
 
 class App extends React.Component {
   render() {
-    return <Routes />
+    return <PublicRoutes />
   }
 }
 

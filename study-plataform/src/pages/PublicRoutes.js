@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Login from './Login';
 
-class Routes extends React.Component {
+class PublicRoutes extends React.Component {
   render() {
     return(
       <BrowserRouter>
@@ -16,4 +16,4 @@ class Routes extends React.Component {
   }
 }
 
-export default Routes;
+export default PublicRoutes;
