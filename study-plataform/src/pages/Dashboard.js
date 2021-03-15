@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import BarProgressModules from '../components/BarProgressModules';
 import CourseItem from '../components/CourseItem';
 import Materials from '../components/Materials';
+import Footer from '../components/Footer';
 import * as api from '../services/dataCourses';
 import '../css/Dashboard.css';
 
@@ -47,6 +48,7 @@ class Dashboard extends React.Component {
           { courses.map((course) => <CourseItem key={ course.id } course={ course } />) }
         </section>
         <Materials />
+        <Footer />
       </>
     )
   }
