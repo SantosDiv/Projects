@@ -96,7 +96,7 @@ class Login extends React.Component {
               <button
                 type="button"
                 id="button-submit"
-                className="button"
+                className="button button-login-width"
                 onClick= { this.handlerClick }
               >
                   Sign In

@@ -1,0 +1,33 @@
+.section-materials {
+  background-color: var(--secondary-color);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+
+.button-line {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.7rem;
+  text-align: center;
+}
+
+.button-line:hover {
+  background-color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.lessons {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+

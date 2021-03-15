@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import BarProgressModules from '../components/BarProgressModules';
 import CourseItem from '../components/CourseItem';
+import Materials from '../components/Materials';
 import * as api from '../services/dataCourses';
 import '../css/Dashboard.css';
 
@@ -26,7 +27,7 @@ class Dashboard extends React.Component {
   async fetchAPICourses() {
     const response = await api.coursesStudy();
     this.setState({
-      courses: response
+      courses: response,
     });
   }
 
@@ -45,6 +46,7 @@ class Dashboard extends React.Component {
         <section className="courses-container">
           { courses.map((course) => <CourseItem key={ course.id } course={ course } />) }
         </section>
+        <Materials />
       </>
     )
   }
