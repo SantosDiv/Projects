@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/BarProgressModules.css'
+import '../../css/BarProgressModules.css'
 
 class BarProgressModules extends React.Component {
   render() {

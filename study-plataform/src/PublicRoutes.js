@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import Login from './Login';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 class PublicRoutes extends React.Component {
   render() {

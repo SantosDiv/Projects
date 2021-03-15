@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LinkTo from './MenuBar/LinkTo';
 
 import '../css/Header.css';
 class Header extends React.Component {
@@ -7,6 +8,7 @@ class Header extends React.Component {
     super(props);
 
     this.menuControl = this.menuControl.bind(this);
+    this.menuBarMobile = this.menuBarMobile.bind(this);
     this.state = {
       propVisibility: {visibility: 'hidden'},
     }
@@ -18,46 +20,71 @@ class Header extends React.Component {
         visibility,
         animation,
         left,
+        position: 'fixed',
       },
     });
   }
 
-  render() {
+  menuBarMobile() {
     const { propVisibility } = this.state;
     const { username } = this.props;
+    const icons = {
+      home: <i className="fas fa-home"></i>,
+      profile: <i className="fas fa-user"></i>,
+      achievements: <i className="fas fa-trophy"></i>,
+      certificates: <i className="fas fa-certificate"></i>,
+    }
+
+    return (
+      <nav className="menu-links" style={propVisibility}>
+        <div className="close-icon">
+          <button type="button" onClick={() =>
+            this.menuControl({animation: 'slideOut 1s', left: '-300px'})}>
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+        <ul className="links-container">
+          <LinkTo
+            nameItem="Home"
+            path={ username }
+            icon={ icons.home }
+            menuControl={ this.menuControl }
+          />
+
+          <LinkTo
+            nameItem="Perfil"
+            path="profile"
+            icon={ icons.profile }
+            menuControl={ this.menuControl }
+          />
+
+          <LinkTo
+            nameItem="Conquistas"
+            path="achievements"
+            icon={ icons.achievements }
+            menuControl={ this.menuControl }
+          />
+
+          <LinkTo
+            nameItem="Certificados"
+            path="certificates"
+            icon={ icons.certificates }
+            menuControl={ this.menuControl }
+          />
+        </ul>
+      </nav>
+    );
+  }
+
+  render() {
     return (
       <header className="header-container">
         <div className="menu-container">
           <button className="button-menu color-primary" onClick={() =>
-            this.menuControl({visibility: 'visible', animation: 'slideIn 2s'})}>
+            this.menuControl({visibility: 'visible', animation: 'slideIn 1s'})}>
            <i className="fas fa-bars"></i>
           </button>
-          <nav className="menu-links" style={propVisibility}>
-            <div className="close-icon">
-              <button type="button" onClick={() =>
-                this.menuControl({animation: 'slideOut 2s', left: '-300px'})}>
-                <i className="fas fa-times"></i>
-              </button>
-            </div>
-            <ul className="links-container">
-              <Link to={ `/dashboard/${username}` } className="link">
-                <li>Home</li>
-                <i className="fas fa-home"></i>
-              </Link>
-              <Link to="/dashboard/profile" className="link">
-                <li>Perfil</li>
-                <i className="fas fa-user"></i>
-              </Link>
-              <Link to="/achievements" className="link">
-                <li>Conquistas</li>
-                <i className="fas fa-trophy"></i>
-              </Link>
-              <Link to="/certificates" className="link">
-                <li>Certificados</li>
-                <i className="fas fa-certificate"></i>
-              </Link>
-            </ul>
-          </nav>
+          { this.menuBarMobile() }
         </div>
         <div className="box-xp-signout">
           <p className="text-small color-primary">100 Xp</p>

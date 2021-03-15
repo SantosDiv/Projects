@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../css/CourseItem.css';
+import '../../css/CourseItem.css';
 
 class CourseItem extends React.Component {
   render() {

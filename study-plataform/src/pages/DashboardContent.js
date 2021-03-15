@@ -1,7 +1,7 @@
 import React from 'react';
-import BarProgressModules from '../components/BarProgressModules';
-import CourseItem from '../components/CourseItem';
-import Materials from '../components/Materials';
+import BarProgressModules from '../components/mainContent/BarProgressModules';
+import CourseItem from '../components/mainContent/CourseItem';
+import Materials from '../components/mainContent/Materials';
 
 class DashboardContent extends React.Component {
   render() {

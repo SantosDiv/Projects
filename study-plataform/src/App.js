@@ -1,5 +1,5 @@
 import React from 'react';
-import PublicRoutes from './pages/PublicRoutes';
+import PublicRoutes from './PublicRoutes';
 import './App.css';
 
 class App extends React.Component {
