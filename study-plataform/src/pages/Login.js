@@ -42,6 +42,7 @@ class Login extends React.Component {
         async () => {
           try {
             const usernameTrue = await api.validation(fieldUser.value, fieldPass.value);
+            console.log(usernameTrue);
             this.setState({
               shouldRedirect: true,
               username: usernameTrue,
@@ -75,6 +76,7 @@ class Login extends React.Component {
                 <input
                   type="text"
                   name="username"
+                  data-testid="field-username"
                   className="input"
                   id="username"
                   placeholder="Username"
@@ -86,6 +88,7 @@ class Login extends React.Component {
                 <input
                   type="password"
                   name="password"
+                  data-testid="field-password"
                   className="input"
                   id="password"
                   placeholder="Password"
@@ -96,6 +99,7 @@ class Login extends React.Component {
               <button
                 type="button"
                 id="button-submit"
+                data-testid="button-submit"
                 className="button button-login-width"
                 onClick= { this.handlerClick }
               >
