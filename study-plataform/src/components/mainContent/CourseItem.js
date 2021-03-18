@@ -1,22 +1,56 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ChapterLesson from './ChapterLesson';
 import '../../css/CourseItem.css';
 
 class CourseItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      hidden: false,
+      styleContents: {display:'none'},
+      openAccordion: '',
+      animation:{}
+    }
+  }
+
+  handleClick() {
+    const { hidden } = this.state;
+    if(!hidden) {
+      this.setState({
+        styleContents: {display: 'block'},
+        hidden: true,
+        openAccordion: 'open-accordion',
+        animation: {transform: 'rotateX(180deg)', transition: '0.5s'},
+      });
+    }
+    else {
+      this.setState({
+        styleContents: {display: 'none'},
+        hidden: false,
+        openAccordion: '',
+        animation: {transition: '0.5s'},
+      });
+    }
+  }
+
   render() {
+    const { styleContents, openAccordion, animation } = this.state;
     const { course } = this.props;
-    const { name, module, contents } = course;
+    const { name, contents } = course;
     return(
-      <Link to={`/modulo${module}/${name}`} >
-        <section className="course">
+      <>
+        <section className={`course ${openAccordion}`} onClick={ this.handleClick }>
           <p>{ name }</p>
-          <i className="fas fa-chevron-down"></i>
+          <i className="fas fa-chevron-down" style={animation}></i>
         </section>
-        <ul className="contents">
-          { contents.map((chapter) => <ChapterLesson chapter={ chapter } nameCourse={ name } />)}
+        <ul className="contents" style={styleContents}>
+          { contents.map((chapter) =>
+            <ChapterLesson key={ chapter.title } chapter={ chapter } nameCourse={ name } />
+          )}
         </ul>
-      </Link>
+      </>
     );
   }
 }
