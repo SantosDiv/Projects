@@ -13,3 +13,21 @@ a {
   margin-top: 0.7rem;
   padding: 1rem;
 }
+
+.contents {
+  background-color: var(--primary-color);
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-sizing: border-box;
+  padding: 0.4rem;
+}
+
+.lesson {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 300;
+  padding: 0.4rem;
+}
+
+.lesson:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
