@@ -65,6 +65,7 @@ class Login extends React.Component {
               src= { girl }
               alt="Ilustração de um mulher lendo um livro em cima de outros livros"
               className="image"
+              data-testid="ilustracao-img"
             />
           </section>
 

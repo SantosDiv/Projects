@@ -1,35 +1,33 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 import renderWithRouter from './helpers/renderWithRouter';
 import App from '../App';
 
-describe('Teste das rotas da aplicação', () => {
-  it('Deve renderizar o componente login na rota home', () => {
+describe('Testa a tela inicial do app', () => {
+  it('Se existe uma imagem com data-testid com "ilustracao-img"', () => {
     renderWithRouter(<App />);
-    expect(screen.getByText(/Study Login/i)).toBeInTheDocument();
+    expect(screen.getByTestId('ilustracao-img')).toBeInTheDocument()
   });
 
-  it('Se ao clicar em Logar, leva para rota Dashboard', async () => {
-    const dataUser = {
-      name: 'diogenes',
-      pass: '1234',
-    }
-
-    const { history } =  renderWithRouter(<App />);
-
-    userEvent.type(screen.getByTestId('field-username'), dataUser.name);
-    userEvent.type(screen.getByTestId('field-password'), dataUser.pass);
-    userEvent.click(screen.getByTestId('button-submit'));
-    await waitFor(() => {
-      const { pathname } = history.location;
-      expect(pathname).toBe(`/dashboard/${dataUser.name}`);
+  it('Se existe um Título "Login Study" na página', () => {
+    renderWithRouter(<App />);
+    const title = screen.getByRole('heading', {
+      level: 2,
+      name: 'Study login',
     });
+
+    expect(title).toBeInTheDocument();
   });
 
-  it('Deve renderizar a página NotFound para rotas inexistentes', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pagina/que-nao-existe/');
-    expect(screen.getByText(/página não encontrada/i)).toBeInTheDocument();
+  it('Se existe os campos de username e password', () => {
+    renderWithRouter(<App />);
+
+    expect(screen.getByTestId('field-username')).toBeInTheDocument();
+    expect(screen.getByTestId('field-password')).toBeInTheDocument();
+  });
+
+  it('Se existe um botão de submit', () => {
+    renderWithRouter(<App />);
+    expect(screen.getByTestId('button-submit')).toBeInTheDocument();
   });
 });
