@@ -18,21 +18,19 @@ class CourseItem extends React.Component {
   handleClick() {
     const { hidden } = this.state;
     if(!hidden) {
-      this.setState({
+      return this.setState({
         styleContents: {display: 'block'},
         hidden: true,
         openAccordion: 'open-accordion',
         animation: {transform: 'rotateX(180deg)', transition: '0.5s'},
       });
     }
-    else {
-      this.setState({
+    return this.setState({
         styleContents: {display: 'none'},
         hidden: false,
         openAccordion: '',
         animation: {transition: '0.5s'},
       });
-    }
   }
 
   render() {
