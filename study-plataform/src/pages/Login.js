@@ -42,7 +42,6 @@ class Login extends React.Component {
         async () => {
           try {
             const usernameTrue = await api.validation(fieldUser.value, fieldPass.value);
-            console.log(usernameTrue);
             this.setState({
               shouldRedirect: true,
               username: usernameTrue,
