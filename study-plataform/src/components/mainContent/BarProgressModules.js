@@ -6,8 +6,6 @@ class BarProgressModules extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickMoveBar = this.handleClickMoveBar.bind(this);
-    this.buttonMoveLeft = this.buttonMoveLeft.bind(this);
-    this.buttonMoveRight = this.buttonMoveRight.bind(this);
 
     this.state = {
       moveBarPx: 0,
