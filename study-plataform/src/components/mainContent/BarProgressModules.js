@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonMoveBarModule from './ButtonMoveBarModule';
 import '../../css/BarProgressModules.css';
 
 class BarProgressModules extends React.Component {
@@ -22,34 +23,18 @@ class BarProgressModules extends React.Component {
     }));
   }
 
-  buttonMoveLeft() {
-    return(
-      <button
-        className="btn-controll left-controll"
-        onClick={ () => this.handleClickMoveBar(+97)}
-      >
-        <i className="fas fa-chevron-left"></i>
-      </button>
-    );
-  }
-
-  buttonMoveRight() {
-    return(
-      <button
-        className="btn-controll right-controll"
-        onClick={ () => this.handleClickMoveBar(-97)}
-      >
-        <i className="fas fa-chevron-right"></i>
-      </button>
-    );
-  }
-
   render() {
     const { propCss, moveBarPx, modulesOutScreen } = this.state;
-    const pixelsAdd = 97;
+    const pixelsAdd = 98;
     return(
       <div className="wrapper-bar-progress-modules">
-        {moveBarPx ? this.buttonMoveLeft() : '' }
+        {moveBarPx
+          ? <ButtonMoveBarModule
+              directionButton="left"
+              pixels={+98}
+              handleClickMoveBar={ this.handleClickMoveBar }
+            />
+          : '' }
         <section className="bar-progress-modules" style={propCss}>
           <div className="modules-titles">
             <p>Módulo 1</p>
@@ -63,7 +48,12 @@ class BarProgressModules extends React.Component {
             <div className="bar-enable"></div>
           </div>
         </section>
-        { Math.abs(moveBarPx) < modulesOutScreen * pixelsAdd ? this.buttonMoveRight() : '' }
+        { Math.abs(moveBarPx) < modulesOutScreen * pixelsAdd
+          ? <ButtonMoveBarModule
+            directionButton="right"
+            pixels={-98}
+            handleClickMoveBar={ this.handleClickMoveBar }
+          /> : '' }
       </div>
     )
   }
