@@ -95,7 +95,7 @@ class Login extends React.Component {
                   onChange={ this.handlerChange }
                 />
               </label>
-              <Link to="/forgetpass" className="small-text"> Forget password? </Link>
+              <Link to="/forgetpass" className="small-text"> Forgot password? </Link>
               <button
                 type="button"
                 id="button-submit"

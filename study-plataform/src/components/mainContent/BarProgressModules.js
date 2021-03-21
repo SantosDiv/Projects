@@ -12,7 +12,7 @@ class BarProgressModules extends React.Component {
     this.state = {
       moveBarPx: 0,
       propCss: {},
-      modulesOutScreen: 3,
+      modulesOutScreen: (api.modules.length - 3),
       modules: api.modules,
     }
   }
@@ -33,7 +33,7 @@ class BarProgressModules extends React.Component {
         {moveBarPx
           ? <ButtonMoveBarModule
               directionButton="left"
-              pixels={+98}
+              pixels={98}
               handleClickMoveBar={ this.handleClickMoveBar }
             />
           : '' }
