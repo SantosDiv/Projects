@@ -9,7 +9,7 @@ class DashboardContent extends React.Component {
     return(
       <>
         <div className="saudation">
-          <p className="color-terciary text-medium light-weight">Bem vindo</p>
+          <p className="color-terciary text-medium light-weight">Bem vindo(a)</p>
           <p className="color-primary text-big bold">{ username }</p>
         </div>
         <BarProgressModules />
