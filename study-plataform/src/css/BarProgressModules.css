@@ -45,10 +45,12 @@
   justify-content: space-around;
 }
 
-.modules-titles p {
+.button-module {
+  background-color: transparent;
+  border: none;
   color: var(--primary-color);
   position: relative;
-  text-align: center;
+  outline: none;
   width: 100px;
 }
 

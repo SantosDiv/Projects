@@ -87,7 +87,54 @@ const courses = [
     ],
     active: true,
   },
+  {
+    id: 6,
+    name: 'React - A beleza do Front',
+    module: 2,
+    contents: [
+      {
+        title: 'React - Introdução',
+        sections: ['Introdução', 'Componentes'],
+      },
+      {
+        title: 'States',
+        sections: ['Trabalhando com estados', 'Melhores pŕaticas'],
+      },
+      {
+        title: 'Rotas',
+        sections: ['Onde que eu to?', 'Switch'],
+      },
+    ],
+    active: true,
+  },
 ];
+
+export const modules = [
+  {
+    number: 1,
+    loked: false,
+  },
+  {
+    number: 2,
+    loked: false,
+  },
+  {
+    number: 3,
+    loked: true,
+  },
+  {
+    number: 4,
+    loked: true,
+  },
+  {
+    number: 5,
+    loked: true,
+  },
+  {
+    number: 6,
+    loked: true,
+  },
+]
 
 export async function coursesStudy() {
   return new Promise((resolve) => resolve(courses));

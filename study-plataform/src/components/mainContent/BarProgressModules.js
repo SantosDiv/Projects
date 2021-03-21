@@ -1,5 +1,7 @@
 import React from 'react';
 import ButtonMoveBarModule from './ButtonMoveBarModule';
+import ButtonTitleModule from './ButtonTitleModule';
+import * as api from '../../services/dataCourses';
 import '../../css/BarProgressModules.css';
 
 class BarProgressModules extends React.Component {
@@ -11,6 +13,7 @@ class BarProgressModules extends React.Component {
       moveBarPx: 0,
       propCss: {},
       modulesOutScreen: 3,
+      modules: api.modules,
     }
   }
 
@@ -22,7 +25,8 @@ class BarProgressModules extends React.Component {
   }
 
   render() {
-    const { propCss, moveBarPx, modulesOutScreen } = this.state;
+    const { propCss, moveBarPx, modulesOutScreen, modules } = this.state;
+    const { moduleSelected } = this.props;
     const pixelsAdd = 98;
     return(
       <div className="wrapper-bar-progress-modules">
@@ -35,12 +39,14 @@ class BarProgressModules extends React.Component {
           : '' }
         <section className="bar-progress-modules" style={propCss}>
           <div className="modules-titles">
-            <p>Módulo 1</p>
-            <p className="disable-module">Módulo 2 <i className="fas fa-lock icon"></i></p>
-            <p className="disable-module">Módulo 3 <i className="fas fa-lock icon"></i></p>
-            <p className="disable-module">Módulo 4 <i className="fas fa-lock icon"></i></p>
-            <p className="disable-module">Módulo 5 <i className="fas fa-lock icon"></i></p>
-            <p className="disable-module">Módulo 6 <i className="fas fa-lock icon"></i></p>
+            { modules.map((module) =>
+              <ButtonTitleModule
+                key={ module.number }
+                module={ module.number }
+                loked={ module.loked }
+                moduleSelected = { moduleSelected }
+              />
+            )}
           </div>
           <div className="bar-disable">
             <div className="bar-enable"></div>
