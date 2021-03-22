@@ -74,10 +74,3 @@
   height: 0.5rem;
   width: 100%;
 }
-
-.bar-enable {
-  background-color: var(--secondary-color);
-  border-radius: 0.8rem;
-  height: 0.5rem;
-  width: 33.32%;
-}

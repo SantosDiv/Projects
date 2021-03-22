@@ -120,7 +120,7 @@ export const modules = [
   },
   {
     number: 3,
-    loked: true,
+    loked: false,
   },
   {
     number: 4,
