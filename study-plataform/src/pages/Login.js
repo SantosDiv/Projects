@@ -14,7 +14,6 @@ class Login extends React.Component {
 
     this.state = {
       shouldRedirect: false,
-      username: '',
     }
   }
 
@@ -25,7 +24,7 @@ class Login extends React.Component {
       : parentNode.classList.remove('error-class');
   }
 
-  handlerClick() {
+  async handlerClick() {
     const fieldUser = document.querySelector('#username');
     const fieldPass = document.querySelector('#password');
     const userIsEmpyt = fieldUser.value === '';
@@ -35,32 +34,21 @@ class Login extends React.Component {
     if (passIsEmpyt) fieldPass.parentNode.classList.add('error-class');
 
     if (!userIsEmpyt && !passIsEmpyt) {
-      this.setState(
-        {
-          shouldRedirect: false,
-        },
-        async () => {
-          try {
-            const { addToStore } = this.props;
-            const username = await api.validation(fieldUser.value, fieldPass.value);
-            const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
-            addToStore(refactoredName);
-
-            this.setState({
-              shouldRedirect: true,
-              username,
-            });
-          } catch (error) {
-            alert(error);
-          }
-        }
-        );
+      try {
+        const { addToStore } = this.props;
+        const username = await api.validation(fieldUser.value, fieldPass.value);
+        const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
+        addToStore(refactoredName);
+      } catch (error) {
+        alert(error);
+      }
     }
   }
 
   render() {
-    const { shouldRedirect } = this.state;
-    if (shouldRedirect) return <Redirect to={`/dashboard`} />
+    const { credentials } = this.props;
+    const { login } = credentials;
+    if (login) return <Redirect to={`/dashboard`} />
     return(
         <main>
           <section className="container-image">
@@ -120,4 +108,8 @@ const mapDispatchToProps = dispatch => ({
   addToStore: state => dispatch(sendUsername(state)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = state => ({
+  credentials: state.reducerUsername,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

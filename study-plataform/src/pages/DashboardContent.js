@@ -20,13 +20,14 @@ class DashboardContent extends React.Component {
 
   render() {
     const { courses, dataUser } = this.props;
+    const { username } = dataUser;
     const { module } = this.state;
     const coursesFiltred = courses.filter((course) => course.module === module);
     return(
       <>
         <div className="saudation">
           <p className="color-terciary text-medium light-weight">Bem vindo(a)</p>
-          <p className="color-primary text-big bold">{ dataUser.username }</p>
+          <p className="color-primary text-big bold">{ username }</p>
         </div>
         <BarProgressModules moduleSelected={ this.moduleSelected } />
         <section className="courses-container">
