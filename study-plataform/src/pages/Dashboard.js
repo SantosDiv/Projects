@@ -12,10 +12,7 @@ class Dashboard extends React.Component {
     super(props);
 
     this.fetchAPICourses = this.fetchAPICourses.bind(this);
-    const { match: { params } } = this.props;
-    const { username } = params;
     this.state = {
-      username,
       courses: [],
     }
   }
@@ -32,15 +29,14 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { username, courses } = this.state;
-    const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
+    const { courses } = this.state;
     return (
       <>
-        <Header username={ username } />
+        <Header />
         <Switch>
           <Route exact path="/dashboard/profile" render={() => <Profile /> }/>
           <Route path="/dashboard" render={() =>
-            <DashboardContent courses={ courses } username={ refactoredName } moduleSelected={ this.moduleSelected }/>
+            <DashboardContent courses={ courses }  moduleSelected={ this.moduleSelected }/>
           }/>
         </Switch>
         <Footer />

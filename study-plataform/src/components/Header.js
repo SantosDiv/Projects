@@ -27,7 +27,6 @@ class Header extends React.Component {
 
   menuBarMobile() {
     const { propVisibility } = this.state;
-    const { username } = this.props;
     const icons = {
       home: <i className="fas fa-home"></i>,
       profile: <i className="fas fa-user"></i>,
@@ -46,7 +45,7 @@ class Header extends React.Component {
         <ul className="links-container">
           <LinkTo
             nameItem="Home"
-            path={ username }
+            path={ '' }
             icon={ icons.home }
             menuControl={ this.menuControl }
           />
@@ -94,5 +93,6 @@ class Header extends React.Component {
     )
   }
 }
+
 
 export default Header;

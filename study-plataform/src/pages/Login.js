@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import * as api from '../services/userValidation';
-
+import { connect } from 'react-redux';
+import sendUsername from '../actions';
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
 
@@ -15,7 +16,6 @@ class Login extends React.Component {
       shouldRedirect: false,
       username: '',
     }
-
   }
 
   handlerChange({ target }) {
@@ -41,10 +41,14 @@ class Login extends React.Component {
         },
         async () => {
           try {
-            const usernameTrue = await api.validation(fieldUser.value, fieldPass.value);
+            const { addToStore } = this.props;
+            const username = await api.validation(fieldUser.value, fieldPass.value);
+            const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
+            addToStore(refactoredName);
+
             this.setState({
               shouldRedirect: true,
-              username: usernameTrue,
+              username,
             });
           } catch (error) {
             alert(error);
@@ -55,8 +59,8 @@ class Login extends React.Component {
   }
 
   render() {
-    const { shouldRedirect, username } = this.state;
-    if (shouldRedirect) return <Redirect to={`/dashboard/${username}`} />
+    const { shouldRedirect } = this.state;
+    if (shouldRedirect) return <Redirect to={`/dashboard`} />
     return(
         <main>
           <section className="container-image">
@@ -112,4 +116,8 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  addToStore: state => dispatch(sendUsername(state)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
