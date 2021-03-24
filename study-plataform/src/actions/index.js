@@ -1,4 +1,3 @@
-const LOGIN = 'LOGIN';
-const sendUsername = (username) => ({ type: LOGIN, username });
+const sendUsername = (SINGIN_SINGUP, username) => ({ type: SINGIN_SINGUP, username });
 
 export default sendUsername;

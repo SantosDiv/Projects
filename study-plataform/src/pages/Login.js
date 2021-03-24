@@ -11,10 +11,7 @@ class Login extends React.Component {
     super(props);
     this.handlerChange = this.handlerChange.bind(this);
     this.handlerClick = this.handlerClick.bind(this);
-
-    this.state = {
-      shouldRedirect: false,
-    }
+    this.authentication = this.authentication.bind(this);
   }
 
   handlerChange({ target }) {
@@ -24,7 +21,19 @@ class Login extends React.Component {
       : parentNode.classList.remove('error-class');
   }
 
-  async handlerClick() {
+  async authentication(fieldUser, fieldPass) {
+    try {
+      const { signin } = this.props;
+      const LOGIN = 'LOGIN';
+      const username = await api.validation(fieldUser, fieldPass);
+      const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
+      signin(LOGIN, refactoredName);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  handlerClick() {
     const fieldUser = document.querySelector('#username');
     const fieldPass = document.querySelector('#password');
     const userIsEmpyt = fieldUser.value === '';
@@ -34,14 +43,7 @@ class Login extends React.Component {
     if (passIsEmpyt) fieldPass.parentNode.classList.add('error-class');
 
     if (!userIsEmpyt && !passIsEmpyt) {
-      try {
-        const { addToStore } = this.props;
-        const username = await api.validation(fieldUser.value, fieldPass.value);
-        const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
-        addToStore(refactoredName);
-      } catch (error) {
-        alert(error);
-      }
+      this.authentication(fieldUser.value, fieldPass.value);
     }
   }
 
@@ -105,7 +107,7 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToStore: state => dispatch(sendUsername(state)),
+  signin: (type, username) => dispatch(sendUsername(type, username)),
 });
 
 const mapStateToProps = state => ({

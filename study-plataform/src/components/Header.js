@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import LinkTo from './MenuBar/LinkTo';
 
 import '../css/Header.css';
+import sendUsername from '../actions';
+import { connect } from 'react-redux';
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -76,6 +78,8 @@ class Header extends React.Component {
   }
 
   render() {
+    const { signup } = this.props;
+    const LOGOUT = 'LOGOUT';
     return (
       <header className="header-container">
         <div className="menu-container">
@@ -87,12 +91,17 @@ class Header extends React.Component {
         </div>
         <div className="box-xp-signout">
           <p className="text-small color-primary">100 Xp</p>
-          <Link to="/" className="color-primary"><i className="fas fa-sign-out-alt"></i></Link>
+          <Link to="/" onClick={() => signup(LOGOUT)} className="color-primary">
+            <i className="fas fa-sign-out-alt"></i>
+          </Link>
         </div>
       </header>
     )
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  signup: (type, username) => dispatch(sendUsername(type, username)),
+});
 
-export default Header;
+export default connect(null, mapDispatchToProps)(Header);

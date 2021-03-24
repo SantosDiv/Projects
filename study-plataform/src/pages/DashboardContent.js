@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import BarProgressModules from '../components/mainContent/BarProgressModules';
 import CourseItem from '../components/mainContent/CourseItem';
 import Materials from '../components/mainContent/Materials';
@@ -19,10 +20,10 @@ class DashboardContent extends React.Component {
   }
 
   render() {
-    const { courses, dataUser } = this.props;
-    const { username } = dataUser;
+    const { courses, dataUser: { username, login } } = this.props;
     const { module } = this.state;
     const coursesFiltred = courses.filter((course) => course.module === module);
+    if (!login) return <Redirect to="/" />
     return(
       <>
         <div className="saudation">
