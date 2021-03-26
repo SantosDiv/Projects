@@ -1,12 +1,12 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './helpers/renderWithRouter';
+import renderWithRouterRedux from './helpers/renderWithRouterRedux';
 import App from '../App';
 
 describe('Teste das rotas da aplicação', () => {
   it('Deve renderizar o componente login na rota home', () => {
-    renderWithRouter(<App />);
+    renderWithRouterRedux(<App />);
     expect(screen.getByText(/Study Login/i)).toBeInTheDocument();
   });
 
@@ -16,19 +16,19 @@ describe('Teste das rotas da aplicação', () => {
       pass: '1234',
     }
 
-    const { history } =  renderWithRouter(<App />);
+    const { history } =  renderWithRouterRedux(<App />);
 
     userEvent.type(screen.getByTestId('field-username'), dataUser.name);
     userEvent.type(screen.getByTestId('field-password'), dataUser.pass);
     userEvent.click(screen.getByTestId('button-submit'));
     await waitFor(() => {
       const { pathname } = history.location;
-      expect(pathname).toBe(`/dashboard/${dataUser.name}`);
+      expect(pathname).toBe(`/dashboard`);
     });
   });
 
   it('Deve renderizar a página NotFound para rotas inexistentes', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRouterRedux(<App />);
     history.push('/pagina/que-nao-existe/');
     expect(screen.getByText(/página não encontrada/i)).toBeInTheDocument();
   });
