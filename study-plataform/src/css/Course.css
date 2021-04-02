@@ -1,0 +1,48 @@
+.box-titles {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.container-progress {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.percentage {
+  margin-top: 2em;
+  margin-left: -0.5em;
+}
+
+.video-section {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.box-video {
+  align-items: center;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  margin-top: 0.7em;
+}
+
+.text-content {
+  margin-top: 0.5em;
+  padding: 1em;
+  text-align: center;
+}
+
+.navagation-buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.course-navigation-button {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+}

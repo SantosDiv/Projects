@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
         <Switch>
           <Route exact path="/dashboard/profile" render={() => <Profile /> }/>
           <Route path="/dashboard" render={() =>
-            <DashboardContent courses={ courses }  moduleSelected={ this.moduleSelected }/>
+              <DashboardContent courses={ courses } />
           }/>
         </Switch>
         <Footer />

@@ -8,8 +8,7 @@ import thunk from 'redux-thunk';
 import rootReducers from '../../reducers';
 
 const createMockStore = (initialState) =>
-  createStore(rootReducers, initialState, applyMiddleware(thunk)
-);
+  createStore(rootReducers, initialState, applyMiddleware(thunk));
 
 const renderWithRouterRedux = (
     component,

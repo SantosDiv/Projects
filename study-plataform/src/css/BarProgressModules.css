@@ -64,6 +64,12 @@
   opacity: 0.5;
 }
 
+.bar-enable {
+  border-radius: 0.8rem;
+  height: 0.5rem;
+  width: 20%;
+}
+
 .bar-disable {
   align-items: center;
   background-color: var(--bars-block-color);
