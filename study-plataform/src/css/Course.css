@@ -8,9 +8,10 @@
   width: 90%;
 }
 
-.percentage {
-  margin-top: 2em;
-  margin-left: -0.5em;
+.box-bar-progress {
+  align-items: center;
+  display: flex;
+  gap: 0.5em;
 }
 
 .video-section {

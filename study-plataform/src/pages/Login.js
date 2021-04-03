@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import * as api from '../services/userValidation';
 import { connect } from 'react-redux';
-import sendUsername from '../actions';
+import { sendUsername } from '../actions';
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
 

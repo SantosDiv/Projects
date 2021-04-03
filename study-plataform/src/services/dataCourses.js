@@ -1,16 +1,63 @@
 const courses = [
   {
     id: 1,
-    name: 'Introdução a Bash',
+    name: 'Introdução a Bash', // SectionTitle
     module: 1,
     contents: [
       {
-        title: 'Introdução',
-        sections: ['Introdução', 'O que é bash'],
+        title: 'Introdução', // subSectionTitle
+        sections: [ // contentsSubSection
+          {
+            chapterTitle: 'Introdução',
+            content: `<p>
+              Para acessar o bash no linux tecle:
+              </p>
+              <code> Ctrl + alt + T </code>
+              <p>
+                  Você pode criar pastas, deletar,
+                  percorrer por dentro do seu computador usando apenas o seu terminal.
+                  Isso não é lindo? :)
+                  Vamos ver alguns comando legais durante esse curso de introdução.
+                  Vamos lá, avançar!
+              </p>`,
+          },
+          {
+            chapterTitle: 'O que é bash',
+            content: `<p>
+              Veja o que é bash
+              </p>
+              <code> Ctrl + alt + T </code>
+              <p>
+                 Bash é isso!
+              </p>`,
+          },
+        ],
       },
       {
         title: 'Comando do terminal',
-        sections: ['Introdução', 'Cd, rm, mkdir'],
+        sections: [
+          {
+            chapterTitle: 'Introdução',
+            content: `<p>
+              O que é o comando:
+              </p>
+              <p>
+                  Faça o comando aqui
+              </p>`,
+          },
+          {
+            chapterTitle: 'Cd, rm, mkdir',
+            content: `<p>
+              Faça aqui o seu cd
+              </p>
+              <p>
+                Você pode criar pastas, deletar,
+                percorrer por dentro do seu computador usando apenas o seu terminal.
+                Isso não é lindo? :)
+                Vamos ver alguns comando legais durante esse curso de introdução.
+              </p>`,
+          },
+        ],
       },
     ],
     active: true,

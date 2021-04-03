@@ -75,8 +75,6 @@
   background-color: var(--bars-block-color);
   border-radius: 0.8rem;
   display: flex;
-  grid-column-start: 1;
-  grid-column-end: 5;
   height: 0.5rem;
   width: 100%;
 }
