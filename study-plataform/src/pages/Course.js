@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import * as api from '../services/dataCourses';
+import { fecthCourses } from '../actions/';
 import '../css/BarProgressModules.css';
 import '../css/Course.css';
 
@@ -12,13 +14,65 @@ class Course extends React.Component {
     this.state = {
       indexChapter: 0,
       subSection: [],
+      percentage: 0
     }
 
     this.convertTextSectionInHtml = this.convertTextSectionInHtml.bind(this);
     this.getTextFromDB = this.getTextFromDB.bind(this);
     this.courseMainContainer = this.courseMainContainer.bind(this);
+    this.changeTaskStatus = this.changeTaskStatus.bind(this);
+    this.calcPercentage = this.calcPercentage.bind(this);
     this.incrementOrDecrementIndexChapter = this
       .incrementOrDecrementIndexChapter.bind(this);
+  }
+
+  componentDidMount() {
+    // const { fecthCourses: getCourses } = this.props;
+    // getCourses();
+    this.getTextFromDB();
+  }
+
+  calcPercentage(subSectionChanged) {
+    const statusCompleted = subSectionChanged.reduce((acc, crr) => {
+      if (crr.taskCompleted) acc += 1;
+      return acc;
+    }, 0);
+    this.setState({
+      percentage: Math.round(statusCompleted/subSectionChanged.length * 100),
+    })
+  }
+
+  async getTextFromDB() {
+    const courses = await api.coursesStudy();
+    const { match: { params }  } = this.props;
+    const { chapter, session } = params;
+    const courseSelected = courses.filter(course => course.name === session);
+    const contentChapter = courseSelected[0].contents
+      .filter(content => content.title === chapter);
+    const subSection = contentChapter[0].subSection;
+    this.calcPercentage(subSection);
+    this.setState({ subSection });
+  }
+
+  convertTextSectionInHtml() {
+    const { subSection, indexChapter } = this.state;
+    const textHtml = subSection.length ? subSection[indexChapter].content : '';
+    return { __html: textHtml }; // Isso é perigoso, tentar encontrar outra forma
+  }
+
+  changeTaskStatus() {
+    const { indexChapter, subSection } = this.state;
+    const subSectionTaskStatusChanged = subSection
+      .map((element) => {
+        if(element.id === subSection[indexChapter].id) {
+          element.taskCompleted = true;
+        }
+        return element;
+      });
+    this.calcPercentage(subSectionTaskStatusChanged);
+    this.setState((oldState) => ({
+      subSection: subSectionTaskStatusChanged,
+    }));
   }
 
   incrementOrDecrementIndexChapter(param) {
@@ -29,30 +83,10 @@ class Course extends React.Component {
     }));
   }
 
-  componentDidMount() {
-    this.getTextFromDB();
-  }
-
-  getTextFromDB() {
-    const { coursesNew: { courses }, match: { params }  } = this.props;
-    const { chapter, session } = params;
-    const courseSelected = courses.filter(course => course.name === session);
-    const contentChapter = courseSelected[0].contents
-    .filter(content => content.title === chapter);
-    const subSection = contentChapter[0].subSection;
-    this.setState({ subSection });
-  }
-
-  convertTextSectionInHtml() {
-    const { subSection, indexChapter } = this.state;
-    const textHtml = subSection.length ? subSection[indexChapter].content : '';
-    return { __html: textHtml }; // Isso é perigoso, tentar encontrar outra forma
-  }
-
   courseMainContainer() {
     const { match: { params } } = this.props;
-    const { chapter, session } = params;
-    const { subSection, indexChapter } = this.state;
+    const { session } = params;
+    const { subSection, indexChapter, percentage } = this.state;
     return (
       <section className="course-container">
         <div className="box-titles">
@@ -63,27 +97,31 @@ class Course extends React.Component {
           <p className="color-primary light-weight text-small-2x">Progresso</p>
           <div className="box-bar-progress">
             <p className="color-primary light-weight text-small-2x percentage">
-              20%
+              {percentage}%
             </p>
             <div className="bar-disable background-secondary">
-              <div className="bar-enable background-primary"></div>
+              <div className="bar-enable background-primary" style={{width: `${percentage}%`}}></div>
             </div>
           </div>
         </div>
         <section className="video-section">
-          <h3 className="color-terciary text-small light-weight">{ chapter }</h3>
-          <div className="box-video">
-            <iframe
-              width="320"
-              height="190"
-              src="https://www.youtube.com/embed/vXu9BS6D2QA"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-              allowfullscreen
-            >
-            </iframe>
-          </div>
+          <h3 className="color-terciary text-small light-weight">
+            { subSection[indexChapter] && subSection[indexChapter].chapterTitle}
+          </h3>
+          { subSection[indexChapter] && subSection[indexChapter].videoSrc &&
+            <div className="box-video">
+              <iframe
+                title={subSection[indexChapter].chapterTitle}
+                src={ subSection[indexChapter].videoSrc }
+                width="320"
+                height="200"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          }
         </section>
         <section
           dangerouslySetInnerHTML = {this.convertTextSectionInHtml()}
@@ -100,7 +138,10 @@ class Course extends React.Component {
           </button>
           <button
             className="course-navigation-button text-small"
-            onClick={ () => this.incrementOrDecrementIndexChapter('+') }
+            onClick={ () => {
+              this.changeTaskStatus();
+              this.incrementOrDecrementIndexChapter('+');
+              } }
             disabled= { indexChapter >= subSection.length - 1 && true }
           >
             Avançar {'>>'}
@@ -123,7 +164,11 @@ class Course extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  coursesNew: state.coursesReducer,
+  coursesDB: state.coursesReducer,
 });
 
-export default connect(mapStateToProps)(Course);
+const mapDispatchToProps = {
+  fecthCourses,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Course);

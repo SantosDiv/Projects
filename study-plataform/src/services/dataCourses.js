@@ -8,7 +8,9 @@ const courses = [
         title: 'Introdução', // subSectionTitle
         subSection: [ // contentsSubSection
           {
+            id: 252,
             chapterTitle: 'Introdução',
+            videoSrc: "https://player.vimeo.com/video/532889464?autoplayer=1",
             content: `<p>
               Para acessar o bash no linux tecle:
               </p>
@@ -20,9 +22,12 @@ const courses = [
                   Vamos ver alguns comando legais durante esse curso de introdução.
                   Vamos lá, avançar!
               </p>`,
+            taskCompleted: false,
           },
           {
+            id: 265,
             chapterTitle: 'O que é bash',
+            videoSrc: '',
             content: `<p>
               Veja o que é bash
               </p>
@@ -30,9 +35,12 @@ const courses = [
               <p>
                  Bash é isso!
               </p>`,
+            taskCompleted: false,
           },
           {
+            id: 124,
             chapterTitle: 'O que é bash',
+            videoSrc: '',
             content: `<p>
               Mais um
               </p>
@@ -40,6 +48,7 @@ const courses = [
               <p>
                  Bash é isso!
               </p>`,
+              taskCompleted: false,
           },
         ],
       },
