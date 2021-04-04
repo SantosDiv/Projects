@@ -11,29 +11,48 @@ class Course extends React.Component {
 
     this.state = {
       indexChapter: 0,
+      subSection: [],
     }
 
-    this.contentChapterInText = this.contentChapterInText.bind(this);
+    this.convertTextSectionInHtml = this.convertTextSectionInHtml.bind(this);
+    this.getTextFromDB = this.getTextFromDB.bind(this);
     this.courseMainContainer = this.courseMainContainer.bind(this);
+    this.incrementOrDecrementIndexChapter = this
+      .incrementOrDecrementIndexChapter.bind(this);
   }
 
-  contentChapterInText() {
-    const { indexChapter } = this.state;
+  incrementOrDecrementIndexChapter(param) {
+    this.setState((oldState) => ({
+      indexChapter: param === '+'
+        ? oldState.indexChapter + 1
+        : oldState.indexChapter - 1
+    }));
+  }
+
+  componentDidMount() {
+    this.getTextFromDB();
+  }
+
+  getTextFromDB() {
     const { coursesNew: { courses }, match: { params }  } = this.props;
     const { chapter, session } = params;
-    const courseSelected = courses.reduce((acc, crr) => {
-      if (crr.name === session) { acc = crr };
-      return acc;
-    });
-    const contentChapter = courseSelected.contents
+    const courseSelected = courses.filter(course => course.name === session);
+    const contentChapter = courseSelected[0].contents
     .filter(content => content.title === chapter);
-    const textHtml = contentChapter[0].sections[indexChapter].content;
+    const subSection = contentChapter[0].subSection;
+    this.setState({ subSection });
+  }
+
+  convertTextSectionInHtml() {
+    const { subSection, indexChapter } = this.state;
+    const textHtml = subSection.length ? subSection[indexChapter].content : '';
     return { __html: textHtml }; // Isso é perigoso, tentar encontrar outra forma
   }
 
   courseMainContainer() {
     const { match: { params } } = this.props;
     const { chapter, session } = params;
+    const { subSection, indexChapter } = this.state;
     return (
       <section className="course-container">
         <div className="box-titles">
@@ -67,18 +86,22 @@ class Course extends React.Component {
           </div>
         </section>
         <section
-          dangerouslySetInnerHTML = {this.contentChapterInText()}
+          dangerouslySetInnerHTML = {this.convertTextSectionInHtml()}
           className="text-content"
           id="section-text-content">
         </section>
         <nav className="navagation-buttons">
           <button
             className="course-navigation-button text-small"
+            onClick={ () => this.incrementOrDecrementIndexChapter('-') }
+            disabled= { indexChapter <= 0 && true }
           >
             {'<<'} Voltar
           </button>
           <button
             className="course-navigation-button text-small"
+            onClick={ () => this.incrementOrDecrementIndexChapter('+') }
+            disabled= { indexChapter >= subSection.length - 1 && true }
           >
             Avançar {'>>'}
           </button>
