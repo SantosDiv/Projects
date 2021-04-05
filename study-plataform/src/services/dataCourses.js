@@ -3,6 +3,7 @@ const courses = [
     id: 1,
     name: 'Introdução a Bash', // SectionTitle
     module: 1,
+    points: 400,
     contents: [
       {
         title: 'Introdução', // subSectionTitle
@@ -85,6 +86,7 @@ const courses = [
     id: 2,
     name: 'Internet',
     module: 1,
+    points: 550,
     contents: [
       {
         title: 'Introdução',
@@ -101,6 +103,7 @@ const courses = [
     id: 3,
     name: 'Lógica de Programação',
     module: 1,
+    points: 620,
     contents: [
       {
         title: 'Introdução',
@@ -117,6 +120,7 @@ const courses = [
     id: 4,
     name: 'Introdução a JavaScript',
     module: 1,
+    points: 500,
     contents: [
       {
         title: 'Introdução',
@@ -137,6 +141,7 @@ const courses = [
     id: 5,
     name: 'JavaScript - Megulhando a fundo',
     module: 1,
+    points: 600,
     contents: [
       {
         title: 'ES6',
@@ -157,6 +162,7 @@ const courses = [
     id: 6,
     name: 'React - A beleza do Front',
     module: 2,
+    points: 610,
     contents: [
       {
         title: 'React - Introdução',

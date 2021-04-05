@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fecthCourses } from '../actions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DashboardContent from './DashboardContent';
@@ -18,7 +20,9 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+    const { fecthCourses: getDataCourses } = this.props;
     this.fetchAPICourses();
+    getDataCourses();
   }
 
   async fetchAPICourses() {
@@ -45,4 +49,8 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapDispatchToProps = {
+  fecthCourses,
+}
+
+export default connect(null, mapDispatchToProps)(Dashboard);

@@ -11,9 +11,23 @@ class Header extends React.Component {
 
     this.menuControl = this.menuControl.bind(this);
     this.menuBarMobile = this.menuBarMobile.bind(this);
+    this.getPointsFromLocalStorage = this.getPointsFromLocalStorage.bind(this);
     this.state = {
       propVisibility: {visibility: 'hidden'},
+      points: '0',
     }
+  }
+
+  componentDidMount() {
+    this.getPointsFromLocalStorage();
+  }
+
+  getPointsFromLocalStorage () {
+    if(!localStorage.getItem('points')) return localStorage.setItem('points', '0');
+    const points = localStorage.getItem('points');
+    this.setState({
+      points,
+    })
   }
 
   menuControl({ visibility, animation, left }) {
@@ -79,6 +93,7 @@ class Header extends React.Component {
 
   render() {
     const { signup } = this.props;
+    const { points } = this.state;
     const LOGOUT = 'LOGOUT';
     return (
       <header className="header-container">
@@ -90,7 +105,7 @@ class Header extends React.Component {
           { this.menuBarMobile() }
         </div>
         <div className="box-xp-signout">
-          <p className="text-small color-primary">100 Xp</p>
+          <p className="text-small color-primary">{ points } Xp</p>
           <Link to="/" onClick={() => signup(LOGOUT)} className="color-primary">
             <i className="fas fa-sign-out-alt"></i>
           </Link>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import * as api from '../services/dataCourses';
-import { fecthCourses } from '../actions/';
 import '../css/BarProgressModules.css';
 import '../css/Course.css';
 import { Redirect } from 'react-router';
@@ -186,8 +185,4 @@ const mapStateToProps = (state) => ({
   coursesDB: state.coursesReducer,
 });
 
-const mapDispatchToProps = {
-  fecthCourses,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Course);
+export default connect(mapStateToProps)(Course);
