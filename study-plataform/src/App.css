@@ -32,6 +32,10 @@
   font-size: 1.7rem;
 }
 
+.text-big-2x {
+  font-size: 3.4rem;
+}
+
 .color-primary {
   color: var(--primary-color);
 }
