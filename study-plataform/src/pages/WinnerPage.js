@@ -5,6 +5,7 @@ import winnerImg from '../img/winners.svg';
 import '../css/WinnerPage.css';
 class WinnerPage extends React.Component {
   render() {
+    const { match: { params: { session } } } = this.props;
     return(
       <React.Fragment>
         <header className="header-page-winner">
@@ -19,7 +20,7 @@ class WinnerPage extends React.Component {
             src= { winnerImg }
             alt="Ilustração de um troféu com pessoas comemorando a vitória"
           />
-          <p className="text-medium light-weight color-primary">Introdução a Bash</p>
+          <p className="text-medium light-weight color-primary">{ session }</p>
           <p className="text-medium bold color-primary">Concluído</p>
           <h1 className="text-big-2x color-secondary light-weight points">+400XP</h1>
           <p className="text-small color-primary">Parabéns você merece</p>

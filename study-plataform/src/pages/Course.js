@@ -96,7 +96,7 @@ class Course extends React.Component {
     const { match: { params } } = this.props;
     const { session } = params;
     const { subSections, indexChapter, percentage, lessonsCompleted } = this.state;
-    if (lessonsCompleted) return <Redirect to={`/winner/:${ session }`} />
+    if (lessonsCompleted) return <Redirect to={`/winner/${ session }`} />
     return (
       <section className="course-container">
         <div className="box-titles">
