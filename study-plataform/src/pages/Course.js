@@ -29,8 +29,6 @@ class Course extends React.Component {
   }
 
   componentDidMount() {
-    // const { fecthCourses: getCourses } = this.props;
-    // getCourses();
     this.fetchCoursesFromDB();
   }
 
