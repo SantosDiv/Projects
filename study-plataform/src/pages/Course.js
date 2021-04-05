@@ -6,6 +6,7 @@ import * as api from '../services/dataCourses';
 import { fecthCourses } from '../actions/';
 import '../css/BarProgressModules.css';
 import '../css/Course.css';
+import { Redirect } from 'react-router';
 
 class Course extends React.Component {
   constructor(props) {
@@ -13,12 +14,14 @@ class Course extends React.Component {
 
     this.state = {
       indexChapter: 0,
-      subSection: [],
-      percentage: 0
+      subSections: [],
+      percentage: 0,
+      lessonsCompleted: false,
     }
 
     this.convertTextSectionInHtml = this.convertTextSectionInHtml.bind(this);
-    this.getTextFromDB = this.getTextFromDB.bind(this);
+    this.fetchCoursesFromDB = this.fetchCoursesFromDB.bind(this);
+    this.getSubSections = this.getSubSections.bind(this);
     this.courseMainContainer = this.courseMainContainer.bind(this);
     this.changeTaskStatus = this.changeTaskStatus.bind(this);
     this.calcPercentage = this.calcPercentage.bind(this);
@@ -29,7 +32,7 @@ class Course extends React.Component {
   componentDidMount() {
     // const { fecthCourses: getCourses } = this.props;
     // getCourses();
-    this.getTextFromDB();
+    this.fetchCoursesFromDB();
   }
 
   calcPercentage(subSectionChanged) {
@@ -42,37 +45,43 @@ class Course extends React.Component {
     })
   }
 
-  async getTextFromDB() {
+  async fetchCoursesFromDB() {
     const courses = await api.coursesStudy();
+    this.getSubSections(courses);
+  }
+
+  getSubSections(courses) {
     const { match: { params }  } = this.props;
     const { chapter, session } = params;
     const courseSelected = courses.filter(course => course.name === session);
     const contentChapter = courseSelected[0].contents
       .filter(content => content.title === chapter);
-    const subSection = contentChapter[0].subSection;
-    this.calcPercentage(subSection);
-    this.setState({ subSection });
+    const subSections = contentChapter[0].subSections;
+    this.calcPercentage(subSections);
+    this.setState({ subSections });
   }
 
   convertTextSectionInHtml() {
-    const { subSection, indexChapter } = this.state;
-    const textHtml = subSection.length ? subSection[indexChapter].content : '';
+    const { subSections, indexChapter } = this.state;
+    const textHtml = subSections[indexChapter]
+      ? subSections[indexChapter].content
+      : '<p>Lições Concluídas! Avançe para completar :D</p>';
     return { __html: textHtml }; // Isso é perigoso, tentar encontrar outra forma
   }
 
   changeTaskStatus() {
-    const { indexChapter, subSection } = this.state;
-    const subSectionTaskStatusChanged = subSection
+    const { indexChapter, subSections } = this.state;
+    const subSectionTaskStatusChanged = subSections
       .map((element) => {
-        if(element.id === subSection[indexChapter].id) {
+        if(element.id === subSections[indexChapter].id) {
           element.taskCompleted = true;
         }
         return element;
       });
     this.calcPercentage(subSectionTaskStatusChanged);
-    this.setState((oldState) => ({
-      subSection: subSectionTaskStatusChanged,
-    }));
+    this.setState({
+      subSections: subSectionTaskStatusChanged,
+    });
   }
 
   incrementOrDecrementIndexChapter(param) {
@@ -86,7 +95,8 @@ class Course extends React.Component {
   courseMainContainer() {
     const { match: { params } } = this.props;
     const { session } = params;
-    const { subSection, indexChapter, percentage } = this.state;
+    const { subSections, indexChapter, percentage, lessonsCompleted } = this.state;
+    if (lessonsCompleted) return <Redirect to="/completed" />
     return (
       <section className="course-container">
         <div className="box-titles">
@@ -106,13 +116,13 @@ class Course extends React.Component {
         </div>
         <section className="video-section">
           <h3 className="color-terciary text-small light-weight">
-            { subSection[indexChapter] && subSection[indexChapter].chapterTitle}
+            { subSections[indexChapter] && subSections[indexChapter].chapterTitle}
           </h3>
-          { subSection[indexChapter] && subSection[indexChapter].videoSrc &&
+          { subSections[indexChapter] && subSections[indexChapter].videoSrc &&
             <div className="box-video">
               <iframe
-                title={subSection[indexChapter].chapterTitle}
-                src={ subSection[indexChapter].videoSrc }
+                title={subSections[indexChapter].chapterTitle}
+                src={ subSections[indexChapter].videoSrc }
                 width="320"
                 height="200"
                 frameborder="0"
@@ -132,20 +142,29 @@ class Course extends React.Component {
           <button
             className="course-navigation-button text-small"
             onClick={ () => this.incrementOrDecrementIndexChapter('-') }
-            disabled= { indexChapter <= 0 && true }
+            disabled= { indexChapter <= 0 }
           >
             {'<<'} Voltar
           </button>
-          <button
-            className="course-navigation-button text-small"
-            onClick={ () => {
-              this.changeTaskStatus();
-              this.incrementOrDecrementIndexChapter('+');
-              } }
-            disabled= { indexChapter >= subSection.length - 1 && true }
-          >
-            Avançar {'>>'}
-          </button>
+          { indexChapter === subSections.length
+            ? <button
+                className="course-navigation-button text-small"
+                onClick={ () => { this.setState({ lessonsCompleted: true })
+                } }
+              >
+                { 'Concluir' }
+              </button>
+            : <button
+                className="course-navigation-button text-small"
+                onClick={ () => {
+                  this.changeTaskStatus();
+                  this.incrementOrDecrementIndexChapter('+');
+                } }
+              >
+                { 'Avançar >>' }
+              </button>
+          }
+
         </nav>
       </section>
     );

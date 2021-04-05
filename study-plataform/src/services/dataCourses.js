@@ -6,7 +6,7 @@ const courses = [
     contents: [
       {
         title: 'Introdução', // subSectionTitle
-        subSection: [ // contentsSubSection
+        subSections: [ // contentsSubSection
           {
             id: 252,
             chapterTitle: 'Introdução',
@@ -54,7 +54,7 @@ const courses = [
       },
       {
         title: 'Comando do terminal',
-        subSection: [
+        subSections: [
           {
             chapterTitle: 'Introdução',
             content: `<p>
@@ -88,7 +88,7 @@ const courses = [
     contents: [
       {
         title: 'Introdução',
-        subSection: ['Introdução', 'O que é a internet'],
+        subSections: ['Introdução', 'O que é a internet'],
       },
       {
         title: 'Requisição HTTP',
@@ -104,11 +104,11 @@ const courses = [
     contents: [
       {
         title: 'Introdução',
-        subSection: ['Introdução', 'Como o computador entende?'],
+        subSections: ['Introdução', 'Como o computador entende?'],
       },
       {
         title: 'Variáveis',
-        subSection: ['Introdução', 'Tipos de variáveis'],
+        subSections: ['Introdução', 'Tipos de variáveis'],
       },
     ],
     active: true,
@@ -120,15 +120,15 @@ const courses = [
     contents: [
       {
         title: 'Introdução',
-        subSection: ['Introdução', 'O poder do JS',  'Const, let e var'],
+        subSections: ['Introdução', 'O poder do JS',  'Const, let e var'],
       },
       {
         title: 'Condicional',
-        subSection: ['Introdução', 'Eu vou SE tu for', 'Senão, o que faço?'],
+        subSections: ['Introdução', 'Eu vou SE tu for', 'Senão, o que faço?'],
       },
       {
         title: 'Laço de repetição',
-        subSection: ['Introdução', 'For', 'While'],
+        subSections: ['Introdução', 'For', 'While'],
       },
     ],
     active: true,
@@ -140,15 +140,15 @@ const courses = [
     contents: [
       {
         title: 'ES6',
-        subSection: ['Introdução', 'ES6'],
+        subSections: ['Introdução', 'ES6'],
       },
       {
         title: 'HOF',
-        subSection: ['Introdução', 'Como usar?'],
+        subSections: ['Introdução', 'Como usar?'],
       },
       {
         title: 'Objects',
-        subSection: ['Introdução', 'Trablhando com Objects'],
+        subSections: ['Introdução', 'Trablhando com Objects'],
       },
     ],
     active: true,
@@ -160,15 +160,15 @@ const courses = [
     contents: [
       {
         title: 'React - Introdução',
-        subSection: ['Introdução', 'Componentes'],
+        subSections: ['Introdução', 'Componentes'],
       },
       {
         title: 'States',
-        subSection: ['Trabalhando com estados', 'Melhores pŕaticas'],
+        subSections: ['Trabalhando com estados', 'Melhores pŕaticas'],
       },
       {
         title: 'Rotas',
-        subSection: ['Onde que eu to?', 'Switch'],
+        subSections: ['Onde que eu to?', 'Switch'],
       },
     ],
     active: true,
