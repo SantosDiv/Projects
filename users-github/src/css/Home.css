@@ -1,0 +1,63 @@
+.main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.inputs-container {
+  display: flex;
+}
+
+.inputs-container button {
+  background-color: #238636;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 0.4em 0.4em 0;
+  width: 100%;
+}
+
+.input-search {
+  border: none;
+  border-radius: 0.4em 0 0 0.4em;
+  padding: 0.5rem;
+}
+
+.list-users {
+  background-color: #020202;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.1);
+  margin: 0;
+  margin-top: 1rem;
+  padding: 0;
+  width: 100%;
+}
+
+.list-users a {
+  text-decoration: none;
+  color: #c9d1d9;
+  font-weight: 300;
+}
+
+.item {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0.4rem;
+}
+
+.item:hover {
+  border-radius: 0.4rem;
+  background-color: #1f6feb;
+}
+
+.item img {
+  height: 1.2rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
