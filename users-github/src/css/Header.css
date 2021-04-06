@@ -1,0 +1,30 @@
+.header {
+  color: white;
+  margin: 0 auto;
+  padding: 2rem 0 1em 0;
+  position: relative;
+  text-align: center;
+  width: 60%;
+}
+
+.header a {
+  color: white;
+}
+
+.header img {
+  height: 2.5rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+}
+
+.icon {
+  font-size: 6rem;
+}
+
+.home-icon {
+  position: absolute;
+  font-size: 1.5em;
+  left: 0;
+  cursor: pointer;
+}
