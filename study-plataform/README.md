@@ -1,4 +1,4 @@
-<p>
+<p align="center">
  <img src="exemple-plataform.gif" alt="exemplo da plataforma em uso"/>
 </p>
 
