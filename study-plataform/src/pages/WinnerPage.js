@@ -1,27 +1,29 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { string } from 'prop-types';
+import { connect } from 'react-redux';
 import Footer from '../components/Footer';
+import actionChangeStatusChapter from '../actions/actionChangeStatusChapter';
 import winnerImg from '../img/winners.svg';
 import '../css/WinnerPage.css';
-import { connect } from 'react-redux';
 
 class WinnerPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.getCourses = this.getCourses.bind(this);
+    this.filterCourseSelected = this.filterCourseSelected.bind(this);
     this.setPointsInLocalStorage = this.setPointsInLocalStorage.bind(this);
+    this.getPointsInLocalStorage = this.getPointsInLocalStorage.bind(this);
 
     this.state = {
       refresh: false,
       pointsTotal: 0,
-      points: 0,
+      message: '',
     }
   }
 
   componentDidMount() {
-    this.getCourses();
+    this.filterCourseSelected();
   }
 
   setPointsInLocalStorage(points) {
@@ -32,20 +34,39 @@ class WinnerPage extends React.Component {
     });
   }
 
-  getCourses() {
-    const { courses, match: { params: { session } } } = this.props;
-    if (!courses.length) return this.setState({ refresh: true });
-
-    const courseCompleted = courses.find((course) => course.name === session);
+  getPointsInLocalStorage() {
     this.setState({
-      points: courseCompleted.points,
+      pointsTotal: localStorage.getItem('points'),
+      message: 'Finalizado!'
     });
-    this.setPointsInLocalStorage(courseCompleted.points);
+  }
+
+  filterCourseSelected() {
+    const {
+      courses,
+      match: { params: { session, chapter } },
+      propChangeStatusChapter
+    } = this.props;
+
+    if (!courses.length) return this.setState({ refresh: true });
+    const sessionSelected = courses.find((course) => course.name === session);
+    const chapterContent = sessionSelected.contents
+      .find(({ title }) => title === chapter);
+    if (!chapterContent.chapterCompleted) {
+      chapterContent.chapterCompleted = true;
+      this.setState({
+        message: `+${chapterContent.points}XP`,
+      });
+      this.setPointsInLocalStorage(chapterContent.points);
+      propChangeStatusChapter(courses);
+    } else {
+      this.getPointsInLocalStorage();
+    }
   }
 
   render() {
-    const { match: { params: { session } } } = this.props;
-    const { refresh, points, pointsTotal } = this.state;
+    const { match: { params: { chapter } }} = this.props;
+    const { refresh, pointsTotal, message } = this.state;
     if (refresh) return <Redirect to="/dashboard" />
     return (
       <React.Fragment>
@@ -61,9 +82,11 @@ class WinnerPage extends React.Component {
             src= { winnerImg }
             alt="Ilustração de um troféu com pessoas comemorando a vitória"
           />
-          <p className="text-medium light-weight color-primary">{ session }</p>
+          <p className="text-medium light-weight color-primary">{ chapter }</p>
           <p className="text-medium bold color-primary">Concluído</p>
-          <h1 className="text-big-2x color-secondary light-weight points">{`+${points}XP`}</h1>
+          <h1 className="text-big-2x color-secondary light-weight points">
+            { message }
+          </h1>
           <p className="text-small color-primary">Parabéns você merece</p>
 
           <Link to="/dashboard">
@@ -85,8 +108,14 @@ WinnerPage.propTypes = {
   session: string.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-  courses: state.coursesReducer.courses,
+const mapStateToProps = ({ coursesReducer }) => ({
+  courses: coursesReducer.courses,
+  propChaptersCompleted: coursesReducer.chaptersCompleted,
+
 });
 
-export default connect(mapStateToProps)(WinnerPage);
+const mapDispatchToProps = {
+  propChangeStatusChapter: actionChangeStatusChapter,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WinnerPage);

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import * as api from '../services/userValidation';
 import { connect } from 'react-redux';
+import * as api from '../services/userValidation';
+import * as services from '../services/services';
 import { sendUsername } from '../actions';
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
@@ -12,6 +13,10 @@ class Login extends React.Component {
     this.handlerChange = this.handlerChange.bind(this);
     this.handlerClick = this.handlerClick.bind(this);
     this.authentication = this.authentication.bind(this);
+  }
+
+  componentDidMount() {
+    services.clearLocalStorage();
   }
 
   handlerChange({ target }) {

@@ -54,6 +54,10 @@
   width: 100px;
 }
 
+.button-module:focus {
+  font-weight: 800;
+}
+
 .icon {
   position: absolute;
   font-size: 0.6rem;

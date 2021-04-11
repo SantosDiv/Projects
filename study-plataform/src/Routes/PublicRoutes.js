@@ -12,7 +12,7 @@ class PublicRoutes extends React.Component {
         <Route path="/dashboard" component={ Dashboard } />
         <Route exact path="/" render={ () => <Login /> } />
         <Route exact path="/course/:session/:chapter" component={ Course } />
-        <Route exact path="/winner/:session" component={ WinnerPage } />
+        <Route exact path="/winner/:session/:chapter" component={ WinnerPage } />
         <Route render={() => <p>Página não encontrada</p>} />
       </Switch>
     );

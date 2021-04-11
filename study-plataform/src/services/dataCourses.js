@@ -6,12 +6,12 @@ const courses = [
     points: 400,
     contents: [
       {
-        title: 'Introdução', // subSectionTitle
-        subSections: [ // contentsSubSection
+        title: 'Introdução', // chapterTitle
+        subSections: [ // contentsSubChapter
           {
             id: 252,
-            chapterTitle: 'Introdução',
-            videoSrc: "https://player.vimeo.com/video/532889464?autoplayer=1",
+            chapterTitle: 'Introdução', // SubChapterTitle
+            videoSrc: 'https://player.vimeo.com/video/532889464?autoplayer=1',
             content: `<p>
               Para acessar o bash no linux tecle:
               </p>
@@ -27,46 +27,53 @@ const courses = [
           },
           {
             id: 265,
-            chapterTitle: 'O que é bash',
-            videoSrc: '',
+            chapterTitle: 'O que é bash', // SubChapterTitle
+            videoSrc: 'https://player.vimeo.com/video/535349619',
             content: `<p>
               Veja o que é bash
               </p>
-              <code> Ctrl + alt + T </code>
               <p>
-                 Bash é isso!
+              GNU Bash ou simplesmente Bash é um interpretador de comandos, um entre os diversos tradutores entre o usuário e o sistema operacional conhecidos como shell.
+
+              Acrônimo para "Bourne-Again SHell"[2], o Bash é uma evolução retro-compatível muito mais interativa do Bourne Shell (sh). Os shells Bourne permitem a execução de sequências de comandos inseridos diretamente na linha de comandos ("prompt") ou ainda lidos de arquivos de texto conhecidos como shell scripts. Neles se podem invocar comandos internos aos próprios shells (conhecidos como comandos "builtins") ou ainda arquivos binários ou scripts de terceiros arquivados nos dispositivos de armazenamento do sistema.
+              (fonte - Wikpédia)
               </p>`,
             taskCompleted: false,
           },
           {
             id: 124,
-            chapterTitle: 'O que é bash',
+            chapterTitle: 'Exemplos', // SubChapterTitle
             videoSrc: '',
             content: `<p>
-              Mais um
+              Você pode ter acesso aos exemplos aqui
               </p>
-              <code> Ctrl + alt + T </code>
+              <a href="https://www.w3schools.com/js/js_exercises.asp" target="_blanck" />
               <p>
-                 Bash é isso!
+                Entre e divirta-se! :D
               </p>`,
               taskCompleted: false,
           },
         ],
+        chaptherCompleted: false,
+        points: 400,
       },
       {
-        title: 'Comando do terminal',
-        subSections: [
+        title: 'Comando do terminal', // chapterTitle
+        subSections: [ // contentsSubChapter
           {
             chapterTitle: 'Introdução',
+            videoSrc: 'https://player.vimeo.com/video/532889464?autoplayer=1',
             content: `<p>
               O que é o comando:
               </p>
               <p>
-                  Faça o comando aqui
+                Acrônimo para "Bourne-Again SHell"[2], o Bash é uma evolução retro-compatível muito mais interativa do Bourne Shell (sh). Os shells Bourne permitem a execução de sequências de comandos inseridos diretamente na linha de comandos ("prompt") ou ainda lidos de arquivos de texto conhecidos como shell scripts. Neles se podem invocar comandos internos aos próprios shells (conhecidos como comandos "builtins") ou ainda arquivos binários ou scripts de terceiros arquivados nos dispositivos de armazenamento do sistema.
               </p>`,
+            taskCompleted: false,
           },
           {
             chapterTitle: 'Cd, rm, mkdir',
+            videoSrc: '',
             content: `<p>
               Faça aqui o seu cd
               </p>
@@ -76,8 +83,11 @@ const courses = [
                 Isso não é lindo? :)
                 Vamos ver alguns comando legais durante esse curso de introdução.
               </p>`,
+            taskCompleted: false,
           },
         ],
+        chaptherCompleted: false,
+        points: 450,
       },
     ],
     active: true,
