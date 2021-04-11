@@ -1,6 +1,4 @@
-<p align="center">
-  [Gif-Exemplo](./exemple-plataform.gif)
-</p>
+![](exemple-plataform.gif)
 
 ### Projeto Study plataform
 Este é um projeto pessoal, que tem o intuíto de criar uma plataforma de estudos colaborativa, voltada para a área de tecnologia. As aulas serão feitas por voluntários e os alunos terão acesso gratuíto a plataforma.
