@@ -1,0 +1,45 @@
+a {
+  text-decoration: none;
+}
+
+.course {
+  align-items: center;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-color);
+  margin-top: 0.7rem;
+  padding: 1rem;
+  transition: 0.5s;
+}
+
+.open-accordion {
+  background-color: rgb(43, 42, 63);
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: white;
+}
+
+.course:hover {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.contents {
+  background-color: var(--primary-color);
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-sizing: border-box;
+  padding: 0.4rem;
+}
+
+.lesson {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 300;
+  padding: 0.4rem;
+}
+
+.lesson:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}

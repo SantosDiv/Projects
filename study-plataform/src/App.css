@@ -5,6 +5,7 @@
   --bars-block-color: rgb( 255, 231, 155 );
   --error-color: rgb( 245, 124, 124 );
   --gray-color: rgb( 23, 23, 23 );
+  --line-separator-menu-color: rgb( 36, 34, 61 );
 }
 
 * {
@@ -12,5 +13,70 @@
   padding: 0;
   text-decoration: node;
   list-style: none;
+  font-family: 'Poppins', sans-serif;
 }
 
+.text-small {
+  font-size: 1rem;
+}
+
+.text-small-2x {
+  font-size: 0.8rem;
+}
+
+.text-medium {
+  font-size: 1.2rem;
+}
+
+.text-big {
+  font-size: 1.7rem;
+}
+
+.text-big-2x {
+  font-size: 3.4rem;
+}
+
+.color-primary {
+  color: var(--primary-color);
+}
+
+.color-secondary {
+  color: var(--secondary-color);
+}
+
+.color-terciary {
+  color: var(--terciary-color);
+}
+
+.background-primary {
+  background-color: var(--primary-color);
+}
+
+.background-secondary {
+  background-color: var(--secondary-color);
+}
+
+
+.bold {
+  font-weight: 600;
+}
+
+.light-weight {
+  font-weight: 300;
+}
+
+.button {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.8rem;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:focus {
+  outline: none;
+}

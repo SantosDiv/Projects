@@ -1,0 +1,13 @@
+.saudation {
+  text-align: center;
+  padding: 10px;
+}
+
+.saudation > p {
+  line-height: 1.5rem;
+}
+
+.courses-container {
+  width: 90%;
+  margin: 0 auto;
+}

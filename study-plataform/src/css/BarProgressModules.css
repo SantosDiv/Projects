@@ -1,0 +1,84 @@
+.wrapper-bar-progress-modules {
+  height: 4rem;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 90%;
+}
+
+.bar-progress-modules {
+  margin: 1rem auto;
+  position: absolute;
+  transition: 0.5s;
+  /* width: 100%; */
+  z-index: 0;
+}
+
+.btn-controll {
+  align-items: center;
+  background-color: white;
+  border: none;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 1.5rem;
+}
+
+.left-controll {
+  left: -0.5rem;
+  z-index: 3;
+}
+
+.right-controll {
+  right: -0.4rem;
+}
+
+.modules-titles {
+  align-items: center;
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  justify-content: space-around;
+}
+
+.button-module {
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+  position: relative;
+  outline: none;
+  width: 100px;
+}
+
+.button-module:focus {
+  font-weight: 800;
+}
+
+.icon {
+  position: absolute;
+  font-size: 0.6rem;
+  opacity: 0.5;
+}
+
+.disable-module {
+  opacity: 0.5;
+}
+
+.bar-enable {
+  border-radius: 0.8rem;
+  height: 0.5rem;
+  width: 20%;
+}
+
+.bar-disable {
+  align-items: center;
+  background-color: var(--bars-block-color);
+  border-radius: 0.8rem;
+  display: flex;
+  height: 0.5rem;
+  width: 100%;
+}

@@ -1,26 +1,56 @@
 import React from 'react';
-// import { Redirect } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fecthCourses } from '../actions';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+import DashboardContent from './DashboardContent';
+import Profile from './Profile';
+import * as api from '../services/dataCourses';
+import '../css/Dashboard.css';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    const { match: { params } } = this.props;
-    const { username } = params;
+
+    this.fetchAPICourses = this.fetchAPICourses.bind(this);
     this.state = {
-      username,
+      courses: [],
     }
   }
 
+  componentDidMount() {
+    const { fecthCourses: getDataCourses } = this.props;
+    this.fetchAPICourses();
+    getDataCourses();
+  }
+
+  async fetchAPICourses() {
+    const response = await api.coursesStudy();
+    this.setState({
+      courses: response,
+    });
+  }
+
   render() {
-    const { username } = this.state;
+    const { courses } = this.state;
     return (
       <>
         <Header />
-        <p>Olá, { username } </p>
+        <Switch>
+          <Route exact path="/dashboard/profile" render={() => <Profile /> }/>
+          <Route path="/dashboard" render={() =>
+            <DashboardContent courses={ courses } />
+          }/>
+        </Switch>
+        <Footer />
       </>
-    )
+    );
   }
 }
 
-export default Dashboard;
+const mapDispatchToProps = {
+  fecthCourses,
+}
+
+export default connect(null, mapDispatchToProps)(Dashboard);

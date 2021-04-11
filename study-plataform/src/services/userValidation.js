@@ -4,6 +4,11 @@ const dataUsers = [
     password: '1234',
     token: true,
   },
+  {
+    username: 'nayara',
+    password: '1234',
+    token: true,
+  },
 ];
 
 export async function validation(userN, passW) {

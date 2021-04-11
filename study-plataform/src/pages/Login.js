@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import * as api from '../services/userValidation';
-
+import * as services from '../services/services';
+import { sendUsername } from '../actions';
 import girl from '../img/girl-study.svg';
 import "../css/Login.css";
 
@@ -10,12 +12,11 @@ class Login extends React.Component {
     super(props);
     this.handlerChange = this.handlerChange.bind(this);
     this.handlerClick = this.handlerClick.bind(this);
+    this.authentication = this.authentication.bind(this);
+  }
 
-    this.state = {
-      shouldRedirect: false,
-      username: '',
-    }
-
+  componentDidMount() {
+    services.clearLocalStorage();
   }
 
   handlerChange({ target }) {
@@ -23,6 +24,18 @@ class Login extends React.Component {
     value === ''
       ? parentNode.classList.add('error-class')
       : parentNode.classList.remove('error-class');
+  }
+
+  async authentication(fieldUser, fieldPass) {
+    try {
+      const { signin } = this.props;
+      const LOGIN = 'LOGIN';
+      const username = await api.validation(fieldUser, fieldPass);
+      const refactoredName = `${username[0].toUpperCase()}${username.substring(1)}`;
+      signin(LOGIN, refactoredName);
+    } catch (error) {
+      alert(error);
+    }
   }
 
   handlerClick() {
@@ -35,28 +48,14 @@ class Login extends React.Component {
     if (passIsEmpyt) fieldPass.parentNode.classList.add('error-class');
 
     if (!userIsEmpyt && !passIsEmpyt) {
-      this.setState(
-        {
-          shouldRedirect: false,
-        },
-        async () => {
-          try {
-            const usernameTrue = await api.validation(fieldUser.value, fieldPass.value);
-            this.setState({
-              shouldRedirect: true,
-              username: usernameTrue,
-            });
-          } catch (error) {
-            alert(error);
-          }
-        }
-        );
+      this.authentication(fieldUser.value, fieldPass.value);
     }
   }
 
   render() {
-    const { shouldRedirect, username } = this.state;
-    if (shouldRedirect) return <Redirect to={`/dashboard/${username}`} />
+    const { credentials } = this.props;
+    const { login } = credentials;
+    if (login) return <Redirect to={`/dashboard`} />
     return(
         <main>
           <section className="container-image">
@@ -64,6 +63,7 @@ class Login extends React.Component {
               src= { girl }
               alt="Ilustração de um mulher lendo um livro em cima de outros livros"
               className="image"
+              data-testid="ilustracao-img"
             />
           </section>
 
@@ -75,6 +75,7 @@ class Login extends React.Component {
                 <input
                   type="text"
                   name="username"
+                  data-testid="field-username"
                   className="input"
                   id="username"
                   placeholder="Username"
@@ -86,17 +87,19 @@ class Login extends React.Component {
                 <input
                   type="password"
                   name="password"
+                  data-testid="field-password"
                   className="input"
                   id="password"
                   placeholder="Password"
                   onChange={ this.handlerChange }
                 />
               </label>
-              <Link to="/forgetpass" className="small-text"> Forget password? </Link>
+              <Link to="/forgetpass" className="small-text"> Forgot password? </Link>
               <button
                 type="button"
                 id="button-submit"
-                className="button"
+                data-testid="button-submit"
+                className="button button-login-width"
                 onClick= { this.handlerClick }
               >
                   Sign In
@@ -108,4 +111,12 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  signin: (type, username) => dispatch(sendUsername(type, username)),
+});
+
+const mapStateToProps = state => ({
+  credentials: state.reducerUsername,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

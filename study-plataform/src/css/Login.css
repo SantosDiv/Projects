@@ -60,22 +60,6 @@
   color: var(--primary-color);
 }
 
-.button {
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 0.8rem;
-  color: white;
-  font-size: 1.2rem;
-  padding: 0.8rem;
-  text-align: center;
-  text-decoration: none;
-  width: 80%;
-}
-
-.button:focus {
-  outline: none;
-}
-
 .error-class {
   color: var(--error-color);
   box-shadow: 0 0 0 1px var(--error-color);
@@ -84,4 +68,8 @@
 
 .error-class > .input::placeholder {
   color: var(--error-color);
+}
+
+.button-login-width {
+  width: 80%;
 }
