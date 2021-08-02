@@ -14,7 +14,7 @@ A educação é um meio que vejo que posso contribuir para que o mundo se torne 
  <img src="https://img.shields.io/badge/-JavaScript-yellow??style=for-the-badge&logo=javascript&logoColor=white" alt="Javascript Logo"/>
  <img src="https://img.shields.io/badge/-HTML-orange??style=for-the-badge&logo=HTML&logoColor=white" alt="HTML Logo"/>
  <img src="https://img.shields.io/badge/-CSS-blue??style=for-the-badge&logo=CSS&logoColor=white" alt="CSS Logo"/>
- <img src="https://api.iconify.design/mdi:language-javascript.svg" width: "50" height: "50" />
+ <img src="https://api.iconify.design/mdi:language-javascript.svg" width: "500" height: "500" />
 </p>
 <h5>Principais dependências </h5>
 <p>
