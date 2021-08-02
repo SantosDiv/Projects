@@ -10,7 +10,7 @@ A educação é um meio que vejo que posso contribuir para que o mundo se torne 
 
 <h5> Framework/Linguagens </h5>
 <p>
- <img src="https://img.shields.io/badge/-React-blue??style=for-the-badge&logo=react&logoColor=white" alt="React Logo"/>
+ <img src="https://img.shields.io/badge/-React-blue??style=for-the-badge&logo=&logoColor=white" alt="React Logo"/>
  <img src="https://img.shields.io/badge/-JavaScript-yellow??style=for-the-badge&logo=javascript&logoColor=white" alt="Javascript Logo"/>
  <img src="https://img.shields.io/badge/-HTML-orange??style=for-the-badge&logo=HTML&logoColor=white" alt="HTML Logo"/>
  <img src="https://img.shields.io/badge/-CSS-blue??style=for-the-badge&logo=CSS&logoColor=white" alt="CSS Logo"/>
